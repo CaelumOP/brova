@@ -21,7 +21,6 @@
   --color-accent-hover: #d0bfff;  /* violet-2 */
   --color-accent-strong: #7048e8; /* violet-7 */
   --color-on-accent: #ffffff;
-  --color-brand-lime: #a9e34b;    /* lime-4 */
 
   --color-correct: #69db7c;       /* green-4 */
   --color-correct-text: #8ce99a;  /* green-3 */
@@ -135,11 +134,6 @@ h1:focus, .summary h2:focus {
   color: var(--color-on-accent);
 }
 .wordmark-tile svg { block-size: 24px; inline-size: auto; }
-.wordmark-en {
-  font: 700 15px/1 var(--font-display);
-  letter-spacing: 0.16em;
-  color: var(--color-brand-lime);
-}
 
 /* ---- Page container ---- */
 .container {
@@ -578,7 +572,6 @@ h1:focus, .summary h2:focus {
   .home-link { gap: 10px; inline-size: calc(100% - 32px); }
   .wordmark-tile { block-size: 32px; }
   .wordmark-tile svg { block-size: 22px; }
-  .wordmark-en { font-size: 14px; }
   .question { padding-inline: var(--space-4); }
   .report { inset-inline-end: var(--space-4); }
   .summary { padding: var(--space-4); }

@@ -432,7 +432,7 @@ After the UI mockups (canvas "Brova Mockups"), the author decided the following.
 | --- | --- | --- |
 | 1 | Direction | B, "Dark & modern." Dark only: no light mode, no switcher, whatever the system setting is. The bright (C) and clean (A) directions are rejected. |
 | 2 | Palette and fonts | Violet accent with lime as the second color. Open Props stays as the palette base. Fonts: Space Grotesk, IBM Plex Sans, IBM Plex Sans Arabic, JetBrains Mono. |
-| 3 | Logo | Concept D: the Kufi wordmark "بروفة" (Reem Kufi) on a violet tile with "BROVA" in lime beside it. It shows both names, so the bilingual header rule still holds. |
+| 3 | Logo | Concept D: the Kufi wordmark "بروفة" (Reem Kufi) on a violet tile. The lime "BROVA" beside it was removed at the author's request (2026-11-03); the English name stays in the tab title and the home link's accessible name. |
 | 4 | Favicon | Option 3, "Exam sheet": the white Kufi "ب" on a violet sheet with a folded lime corner (OQ-3, resolved). |
 | 5 | New features from the mockups | Breadcrumb on the exam page; question map with per-question result and links; "Next in {course}" card; topic tiles instead of a topic table; dashed lime outline for the correct answer a student missed; syntax colors in code blocks. |
 

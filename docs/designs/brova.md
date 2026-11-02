@@ -260,7 +260,7 @@ The site uses one key, `brova`:
 
 ### Bilingual Names
 
-* The header shows the wordmark: "بروفة" in Kufi lettering on a violet tile, with "BROVA" in lime beside it (see [brova-ui.md](brova-ui.md)). The wordmark SVG has `aria-hidden="true"`; the home link's accessible name is "Brova بروفة, home", with the Arabic word in a `lang="ar"` span.
+* The header shows the wordmark: "بروفة" in Kufi lettering on a violet tile (see [brova-ui.md](brova-ui.md)). The lime "BROVA" beside it was removed at the author's request; the English name "Brova" stays in the tab title and the home link's accessible name. The wordmark SVG has `aria-hidden="true"`; the home link's accessible name is "Brova بروفة, home", with the Arabic word in a `lang="ar"` span.
 * The `<title>` is "Brova · بروفة". The exam page's title is "`{exam title}` — Brova · بروفة". The browser tab shows a square favicon from the same Kufi lettering (OQ-3: the "exam sheet" mark).
 * Course names show as "Network Security · أمن الشبكات". The English name comes first, then the Arabic name in a smaller, muted style.
 * The Arabic part is its own element with `lang="ar" dir="rtl"`, so it reads right to left inside the English page and screen readers pronounce it as Arabic. The rest of the page is `lang="en" dir="ltr"`.
@@ -784,7 +784,7 @@ All values come from [brova-ui.md](brova-ui.md).
     * arrow keys move within a radio group, and buttons work with Enter and Space;
     * a screen reader reads the home link as "Brova بروفة, home" and each question group with its number;
     * at 1366×768 with a 40-question exam, "Check Answers" is reachable inside the question map.
-  * **Arabic names**: the header wordmark "بروفة" with "BROVA", the tab title `Brova · بروفة`, and `Network Security · أمن الشبكات` show the Arabic right to left with correctly joined letters.
+  * **Arabic names**: the header wordmark "بروفة", the tab title `Brova · بروفة`, and `Network Security · أمن الشبكات` show the Arabic right to left with correctly joined letters.
   * **Favicon**: at 16 px in a browser tab, on both a dark and a light browser theme, the violet sheet, the lime corner, and the white ب can each be told apart.
   * **No other domains**: with DevTools Network open, a full home-to-graded-exam flow requests nothing outside the site's own origin, and the fonts load from `fonts/` (no "Failed to decode downloaded font" warnings in the console).
 * **Deployment**:

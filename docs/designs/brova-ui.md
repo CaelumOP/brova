@@ -12,7 +12,7 @@ This document is the styling spec for Phase 5. Every value below comes from the 
 
 * **Dark only.** `:root` holds the only set of values and sets `color-scheme: dark`. There is no light mode and no theme switcher; the site looks the same whatever the system setting is (author's decision, 2026-11-02).
 * **Tokens only.** Colors, backgrounds, borders, and shadows come only from the custom properties below. Components never use a raw hex value.
-* **One accent, one highlight.** Violet is the accent (links, primary buttons, the wordmark tile, score bars). Lime marks the brand ("BROVA") and the correct answer a student missed.
+* **One accent, one highlight.** Violet is the accent (links, primary buttons, the wordmark tile, score bars). Lime marks the correct answer a student missed (and the favicon's folded corner).
 * **State is never color alone.** Every answer state has an icon and text, and the missed answer also has a dashed outline.
 * **Palette.** Most values are Open Props colors (`open-props@1.7.23`), written directly into `:root`; the Open Props file itself is not shipped (round-2 decision A1). The "Open Props" column names each source color. Values marked "custom" are blends for dark tinted backgrounds that Open Props does not have.
 
@@ -42,7 +42,6 @@ Names are the CSS custom properties in `css/style.css`.
 | `--color-accent-hover` | `#d0bfff` | violet-2 | Link hover |
 | `--color-accent-strong` | `#7048e8` | violet-7 | Primary button fill, wordmark tile (not score bars: against the track it is only 2.07:1) |
 | `--color-on-accent` | `#ffffff` | white | Text on `--color-accent-strong` |
-| `--color-brand-lime` | `#a9e34b` | lime-4 | "BROVA" beside the wordmark |
 
 ### Answer states
 
@@ -59,7 +58,6 @@ Names are the CSS custom properties in `css/style.css`.
 | `--color-missed-bg` | `#1c2a0d` | custom | Fill of the missed correct answer |
 | `--color-on-status` | `#0d0f12` | gray-11 | Letter on a solid green or red chip |
 
-The brand lime and the missed-answer lime share lime-4. They never sit next to each other (one is in the header, the other inside a graded question), so they do not compete.
 
 ### Code block
 
@@ -83,7 +81,6 @@ Computed with the WCAG formula:
 
 * `--color-text` and `--color-muted` pass 4.5:1 on `--color-bg`, `--color-surface`, and `--color-raised`.
 * White on `--color-accent-strong` (violet-7): 5.5:1.
-* "BROVA": lime-4 on `#16191d` is about 11:1.
 * Every `--syn-*` color passes 4.5:1 on `--code-bg`.
 * Score bar fills (`--color-accent`) pass the 3:1 non-text rule against `--color-track`; `--color-accent-strong` (2.07:1) does not, so it is never used for bars.
 * Every status text token passes 4.5:1 on its own `-bg` token.
@@ -96,7 +93,7 @@ Five families, all under the SIL Open Font License. The first four are self-host
 
 | Family | Weights | Used for |
 | --- | --- | --- |
-| Space Grotesk | 600, 700 | Page titles, card titles, question text (`legend`), next-exam title, the Latin "BROVA" |
+| Space Grotesk | 600, 700 | Page titles, card titles, question text (`legend`), next-exam title |
 | IBM Plex Sans | 400, 600 | Body text, options, explanations, buttons |
 | IBM Plex Sans Arabic | 400 | Arabic parts of course names (`lang="ar"`) |
 | JetBrains Mono | 400, 500, 700 | Eyebrow labels, breadcrumb, scores, percentages, letter chips, map numbers, meta lines, code |
@@ -165,10 +162,9 @@ Fallbacks: `system-ui, sans-serif` for the sans families and `ui-monospace, mono
 ### Header and wordmark
 
 * A full-width bar: `--color-surface`, 1px `--color-border` bottom rule, 12px vertical padding.
-* A home link holding the wordmark lockup, gap 12px (10px on phones). The wordmark SVG has `aria-hidden="true"`, and a visually hidden text inside the link gives it the accessible name "Brova بروفة, home" (the Arabic word in a `lang="ar"` span):
-  * **Tile:** "بروفة" in Reem Kufi 700, white, on `--color-accent-strong`, radius 10px, padding 0 12px, 22px type with line height 1.6 (20px on phones). The span has `lang="ar" dir="rtl"`.
-  * **"BROVA":** Space Grotesk 700, 15px (14px on phones), letter-spacing 0.16em, `--color-brand-lime`.
-* This satisfies the bilingual name rule: the header always shows both Brova and بروفة.
+* A home link holding the wordmark tile. The wordmark SVG has `aria-hidden="true"`, and a visually hidden text inside the link gives it the accessible name "Brova بروفة, home" (the Arabic word in a `lang="ar"` span).
+  * **Tile:** "بروفة" in Reem Kufi 700, white, on `--color-accent-strong`, radius 10px, padding 0 12px, 22px type with line height 1.6 (20px on phones).
+* The lime "BROVA" beside the tile was removed at the author's request (2026-11-03). The English name "Brova" still appears in the tab title and the link's accessible name.
 * In production, the tile's Arabic word is SVG paths exported from Reem Kufi 700, so the header does not need the font (OQ-5).
 
 ### Favicon
