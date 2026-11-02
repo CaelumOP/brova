@@ -1,6 +1,6 @@
 // Exam page: renders one exam, grades it, saves the score, and builds report links.
 import {
-  EXAM_ID_PATTERN, LoadError, bilingualName, el, fetchJson, installErrorHandlers, questionReportUrl, showBanner, updateState,
+  EXAM_ID_PATTERN, LoadError, bilingualName, el, fetchJson, icon, installErrorHandlers, questionReportUrl, showBanner, updateState,
 } from "./common.js?v=__BUILD__";
 import { gradeExam, letterToIndex } from "./grading.js?v=__BUILD__";
 import { tokenize } from "./syntax.js?v=__BUILD__";
@@ -94,9 +94,11 @@ function render(manifest, course, semester) {
 
   ui.summary = el("section", { class: "summary", hidden: true, "aria-labelledby": "summary-heading" });
 
-  const questions = el("div", { class: "questions" }, exam.questions.map((q, i) => renderQuestion(q, i)));
+  // As in the mockup: header, summary, and questions share the left column, and
+  // the question map starts at the top of the right column.
+  const questions = el("div", { class: "questions" }, header, ui.summary, exam.questions.map((q, i) => renderQuestion(q, i)));
   const side = el("div", { class: "side" }, renderMap(), renderNextCard(manifest));
-  main.replaceChildren(header, ui.summary, el("div", { class: "exam-layout" }, questions, side));
+  main.replaceChildren(el("div", { class: "exam-layout" }, questions, side));
 }
 
 function renderQuestion(question, index) {
@@ -107,7 +109,7 @@ function renderQuestion(question, index) {
   const report = el("a", {
     class: "report", target: "_blank", rel: "noopener", hidden: true,
     "aria-label": `Report question ${number}`, title: `Report question ${number}`,
-  }, "Report");
+  }, icon("flag", 18));
 
   const values = question.type === "tf" ? [true, false] : question.options.map((_, i) => i);
   const rows = values.map((value) => {
@@ -124,7 +126,7 @@ function renderQuestion(question, index) {
 
   const code = question.code
     ? el("div", { class: "code" },
-        el("div", { class: "code-bar" }, el("span", { class: "code-label" }, question.codeLanguage ?? "code")),
+        el("div", { class: "code-bar" }, icon("terminal", 14), el("span", { class: "code-label" }, question.codeLanguage ?? "code")),
         el("pre", { dir: "ltr" }, el("code", {},
           tokenize(question.code, question.codeLanguage).map((t) =>
             t.type === "plain" ? t.text : el("span", { class: `syn-${t.type}` }, t.text)))))
@@ -132,9 +134,8 @@ function renderQuestion(question, index) {
 
   const fieldset = el("fieldset", { class: "question", id: `q-${number}` },
     el("legend", {},
-      el("span", { class: "eyebrow" }, `Q${number} · ${question.topic}`),
+      el("span", { class: "question-head" }, el("span", { class: "eyebrow" }, `Q${number} · ${question.topic}`), status),
       el("span", { class: "question-text" }, question.question)),
-    el("div", { class: "question-status" }, status),
     code,
     el("div", { class: `options options-${question.type}` }, rows.map((r) => r.row)),
     explanation,
@@ -162,7 +163,7 @@ function renderNextCard(manifest) {
   if (!next) return null;
   return el("a", { class: "next-card", href: `exam.html?${new URLSearchParams({ id: next.id })}` },
     el("span", { class: "eyebrow" }, `Next in ${next.course}`),
-    el("span", { class: "next-title" }, next.title),
+    el("span", { class: "next-title" }, el("span", {}, next.title), icon("arrow-right", 18)),
     el("span", { class: "next-meta" }, `${next.questionCount} questions`));
 }
 
@@ -196,6 +197,7 @@ function updateReport(index) {
 // ---- Grading ----
 
 const STATUS_TEXT = { correct: "Correct", incorrect: "Incorrect", unanswered: "Not answered" };
+const STATUS_ICON = { correct: "check", incorrect: "x", unanswered: "dash" };
 
 function grade() {
   const { exam } = state;
@@ -207,7 +209,7 @@ function grade() {
     const q = ui.questions[i];
     q.status.hidden = false;
     q.status.className = `status status-${status}`;
-    q.status.replaceChildren(STATUS_TEXT[status]);
+    q.status.replaceChildren(icon(STATUS_ICON[status], 16), STATUS_TEXT[status]);
     for (const row of q.rows) {
       row.input.disabled = true;
       const picked = row.value === state.answers[i];
@@ -216,7 +218,7 @@ function grade() {
         row.end.replaceChildren("Your answer");
       } else if (row.value === correctAnswer) {
         row.row.classList.add("missed");
-        row.end.replaceChildren("Correct answer");
+        row.end.replaceChildren(icon("arrow-right", 16), "Correct answer");
       }
     }
     q.explanation.hidden = false;
@@ -225,6 +227,7 @@ function grade() {
     const link = ui.mapLinks[i];
     link.classList.remove("answered");
     link.classList.add(`map-${status}`);
+    link.replaceChildren(String(i + 1), icon(STATUS_ICON[status], 10));
     link.setAttribute("aria-label", `Question ${i + 1}, ${STATUS_TEXT[status].toLowerCase()}`);
   });
 
@@ -258,10 +261,11 @@ function bar(percent, label) {
 function renderSummary(result) {
   ui.summary.hidden = false;
   ui.summary.replaceChildren(
-    el("h2", { id: "summary-heading", class: "eyebrow", tabindex: "-1" }, "Your score"),
-    el("p", { class: "score-line" },
-      el("span", { class: "big-score" }, `${result.correct}/${result.total}`), " ",
-      el("span", { class: "score-percent" }, `${result.percent}%`)),
+    el("div", { class: "score-head" },
+      el("h2", { id: "summary-heading", class: "eyebrow", tabindex: "-1" }, "Your score"),
+      el("p", { class: "score-line" },
+        el("span", { class: "big-score" }, `${result.correct}/${result.total}`), " ",
+        el("span", { class: "score-percent" }, `${result.percent}%`))),
     bar(result.percent, `${result.percent} percent correct`),
     el("ul", { class: "topics" }, result.byTopic.map((t) =>
       el("li", { class: "topic" },
@@ -286,6 +290,7 @@ function retake() {
     q.report.hidden = true;
     const link = ui.mapLinks[i];
     link.className = "map-square";
+    link.replaceChildren(String(i + 1));
     link.setAttribute("aria-label", `Question ${i + 1}, not answered`);
   });
   ui.summary.hidden = true;

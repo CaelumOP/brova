@@ -31,7 +31,7 @@ Names are the CSS custom properties in `css/style.css`.
 | `--color-raised` | `#212529` | gray-9 | Explanations, letter chips, "Not answered" badge, hover fill |
 | `--color-border` | `#343a40` | gray-8 | Card and row borders, header rule |
 | `--color-track` | `#343a40` | gray-8 | Empty part of score bars |
-| `--color-text` | `#f8f9fa` | gray-0 | Body text, topic bar fill |
+| `--color-text` | `#dee2e6` | gray-3 | Body text, topic bar fill. Softened from gray-0 at the author's request (pure white was harsh on the dark background); still about 14:1 on `--color-bg` |
 | `--color-muted` | `#adb5bd` | gray-5 | Secondary text, Arabic name parts, eyebrows, separators, not-answered squares |
 
 ### Accent and brand
@@ -69,7 +69,7 @@ The brand lime and the missed-answer lime share lime-4. They never sit next to e
 | `--code-bar` | `#2b3035` | custom | Language label bar |
 | `--code-border` | `#495057` | gray-7 | Panel and bar border |
 | `--code-label` | `#ced4da` | gray-4 | Language label text and icon |
-| `--code-text` | `#f8f9fa` | gray-0 | Plain code text |
+| `--code-text` | `#dee2e6` | gray-3 | Plain code text (softened with `--color-text`) |
 | `--syn-command` | `#d0bfff`, bold | violet-2 | First word of a shell line (the command) |
 | `--syn-flag` | `#66d9e8` | cyan-3 | Flags (`-A`, `--dport`) |
 | `--syn-value` | `#ffe066` | yellow-3 | Values and keywords (`INPUT`, `tcp`, `DROP`) |
@@ -150,7 +150,7 @@ Fallbacks: `system-ui, sans-serif` for the sans families and `ui-monospace, mono
 ### Layout
 
 * **Container:** `max-width: 1120px`, centered. Padding 20px top, 24px sides, 64px bottom; 16px sides below 600px.
-* **Exam page:** a wrapping flex row with a 32px gap. The questions column is `flex: 999 1 560px`; a side column (`flex: 1 1 280px`) holds the question map with the next-exam card below it. Below about 900px the side column wraps under the questions. At wide widths the question map is `position: sticky; top: 16px` with `max-height: calc(100vh - 32px)` and `overflow-y: auto`, so "Check Answers" stays reachable on short screens (not in the mockups).
+* **Exam page:** a wrapping flex row with a 32px gap. The questions column is `flex: 999 1 560px`; a side column (`flex: 1 1 280px`) holds the question map with the next-exam card below it. Below about 900px the side column wraps under the questions. At wide widths the side column is `position: sticky; top: 16px` with `max-height: calc(100vh - 32px)` and `overflow-y: auto` (a sticky map inside a short column would have no room to move), and the map's main button is pinned to the bottom of the column, so "Check Answers" stays visible even on a 105-question exam (not in the mockups).
 * **Home page:** one column on phones. From 700px, exam cards sit in a grid, `repeat(auto-fill, minmax(300px, 1fr))` (not in the mockups).
 * **No horizontal page scroll** at 320px and wider. Code blocks scroll inside their own box. To keep this:
   * every `fieldset` has `min-inline-size: 0` (browsers default it to the width of its widest content, so a long code line would widen the page);
@@ -225,7 +225,7 @@ Fallbacks: `system-ui, sans-serif` for the sans families and `ui-monospace, mono
 ### Question cards
 
 * A card per question: `--color-surface`, 1px border, radius 12px, padding 16px 20px 22px, 12px gap. `id="q-N"`.
-* **Header row:** the eyebrow "Q{N} · {topic}" at the start; at the end, after grading, a status badge. The Report control is placed at the top inline-end corner by CSS (see below). The header row wraps on narrow screens.
+* **Header row:** the eyebrow "Q{N} · {topic}" at the start; at the end, after grading, a status badge. Both sit inside the `legend`, so screen readers also hear the result. The legend is floated so it stays inside the card instead of cutting through its border. The Report control is placed at the top inline-end corner by CSS (see below). The header row wraps on narrow screens.
 * **Status badge:** radius 8px, padding 4px 10px, 14px 600, with a 16px icon:
   * Correct: check icon, `--color-correct-text` on `--color-correct-bg`.
   * Incorrect: X icon, `--color-incorrect-text` on `--color-incorrect-bg`.

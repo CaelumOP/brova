@@ -686,7 +686,7 @@ All values come from [brova-ui.md](brova-ui.md).
       * the score summary and topic tiles;
       * the side column holding the question map and the next-exam card, with the map's height capped to the viewport and scrolling inside itself, stacking under the questions below 900 px wide;
       * buttons, banners, and visible focus outlines.
-26. **Wordmark**: the header's "بروفة" as inline SVG paths with `aria-hidden="true"`, so the header does not depend on loading Reem Kufi and screen readers read the link's name instead. The paths are exported once from Reem Kufi 700 with a one-off font-to-path tool (for example a short Node script using the `opentype.js` package, run locally and not committed) and pasted into both HTML files.
+26. **Wordmark**: the header's "بروفة" as inline SVG paths with `aria-hidden="true"`, so the header does not depend on loading Reem Kufi and screen readers read the link's name instead. The paths are exported once from Reem Kufi 700 (`@fontsource/reem-kufi` 5.3.0) with a one-off local script, not committed: HarfBuzz (`harfbuzzjs` 0.4.12) shapes the Arabic so the letters join and run right to left, and `opentype.js` 2.0.0 draws each shaped glyph. `opentype.js` alone cannot do this: it fails on, or skips, the font's required ligature table, which leaves the letters unjoined and in the wrong order. The result was checked against the browser rendering the same font, then pasted into both HTML files.
 27. **Icons**: the inline SVG icons listed in [brova-ui.md](brova-ui.md#icons), built with `el()` (which uses the SVG namespace).
 28. **Phone layout rules** (the favicon moved to Phase 2, item 15):
     * every `fieldset` gets `min-inline-size: 0`, so a long code line scrolls inside its block instead of widening the page;

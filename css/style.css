@@ -1,0 +1,595 @@
+/* Brova styles. Every value comes from docs/designs/brova-ui.md.
+   Colors, backgrounds, borders, and shadows come only from the custom properties
+   in :root. Layout uses logical properties only, so a future Arabic interface
+   can reuse this file. */
+
+/* ---- Tokens ----
+   Color values come from open-props@1.7.23 (named beside each); "custom" values
+   are dark tinted blends Open Props does not have. No Open Props file is shipped. */
+:root {
+  color-scheme: dark;
+
+  --color-bg: #0d0f12;            /* gray-11 */
+  --color-surface: #16191d;       /* gray-10 */
+  --color-raised: #212529;        /* gray-9 */
+  --color-border: #343a40;        /* gray-8 */
+  --color-track: #343a40;         /* gray-8 */
+  --color-text: #dee2e6;          /* gray-3: a soft white, easier on the eyes than gray-0 */
+  --color-muted: #adb5bd;         /* gray-5 */
+
+  --color-accent: #b197fc;        /* violet-3 */
+  --color-accent-hover: #d0bfff;  /* violet-2 */
+  --color-accent-strong: #7048e8; /* violet-7 */
+  --color-on-accent: #ffffff;
+  --color-brand-lime: #a9e34b;    /* lime-4 */
+
+  --color-correct: #69db7c;       /* green-4 */
+  --color-correct-text: #8ce99a;  /* green-3 */
+  --color-correct-bg: #13281a;    /* custom */
+  --color-incorrect: #ff8787;     /* red-4 */
+  --color-incorrect-text: #ffa8a8;/* red-3 */
+  --color-incorrect-bg: #2c1517;  /* custom */
+  --color-missed: #a9e34b;        /* lime-4 */
+  --color-missed-text: #c0eb75;   /* lime-3 */
+  --color-missed-bg: #1c2a0d;     /* custom */
+  --color-on-status: #0d0f12;     /* gray-11 */
+
+  --code-bg: #212529;             /* gray-9 */
+  --code-bar: #2b3035;            /* custom */
+  --code-border: #495057;         /* gray-7 */
+  --code-label: #ced4da;          /* gray-4 */
+  --code-text: #dee2e6;           /* gray-3 */
+  --syn-command: #d0bfff;         /* violet-2 */
+  --syn-flag: #66d9e8;            /* cyan-3 */
+  --syn-value: #ffe066;           /* yellow-3 */
+  --syn-number: #ffa94d;          /* orange-4 */
+  --syn-string: #8ce99a;          /* green-3 */
+  --syn-comment: #adb5bd;         /* gray-5 */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --radius-1: 6px;
+  --radius-2: 8px;
+  --radius-3: 10px;
+  --radius-4: 12px;
+  --radius-round: 999px;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-ar: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ---- Base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: 400 16px/1.55 var(--font-body);
+}
+
+[lang="ar"] { font-family: var(--font-ar); }
+
+a { color: var(--color-accent); }
+a:hover { color: var(--color-accent-hover); }
+
+h1, h2, h3, p { margin: 0; }
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.icon { flex: none; }
+
+.eyebrow {
+  font: 500 13px/1.4 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+h1:focus, .summary h2:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* ---- Header and wordmark ---- */
+.site-header {
+  background: var(--color-surface);
+  border-block-end: 1px solid var(--color-border);
+  padding-block: var(--space-3);
+}
+.home-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-inline: auto;
+  max-inline-size: 1072px; /* the container's 1120px minus its 24px side padding */
+  inline-size: calc(100% - 48px);
+  min-block-size: 44px;
+  text-decoration: none;
+}
+.wordmark-tile {
+  display: inline-flex;
+  align-items: center;
+  block-size: 35px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-3);
+  background: var(--color-accent-strong);
+  color: var(--color-on-accent);
+}
+.wordmark-tile svg { block-size: 24px; inline-size: auto; }
+.wordmark-en {
+  font: 700 15px/1 var(--font-display);
+  letter-spacing: 0.16em;
+  color: var(--color-brand-lime);
+}
+
+/* ---- Page container ---- */
+.container {
+  max-inline-size: 1120px;
+  margin-inline: auto;
+  padding: 20px 24px 64px;
+}
+
+/* ---- Banners ---- */
+#banner:not(:empty) { margin-block-end: var(--space-4); }
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  background: var(--color-raised);
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.banner .icon { margin-block-start: 4px; color: var(--color-muted); }
+.banner-error { background: var(--color-incorrect-bg); border-color: var(--color-incorrect); }
+.banner-error .icon { color: var(--color-incorrect-text); }
+.banner-body { display: flex; flex-direction: column; gap: var(--space-1); }
+.banner-url { font-family: var(--font-mono); font-size: 13px; color: var(--color-muted); }
+
+/* ---- Buttons ---- */
+.button-primary, .button-secondary {
+  min-block-size: 44px;
+  border-radius: var(--radius-3);
+  font: inherit;
+  cursor: pointer;
+}
+.button-primary {
+  padding-inline: var(--space-4);
+  border: 0;
+  background: var(--color-accent-strong);
+  color: var(--color-on-accent);
+  font-weight: 600;
+}
+.button-primary:hover { background: var(--color-accent); color: var(--color-bg); }
+.button-secondary {
+  padding-inline: 14px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+.button-secondary:hover { color: var(--color-text); }
+
+/* ---- Score bars ---- */
+.bar {
+  display: block;
+  block-size: 4px;
+  border-radius: var(--radius-round);
+  background: var(--color-track);
+  overflow: hidden;
+}
+.bar[hidden] { display: none; }
+.bar-fill {
+  display: block;
+  block-size: 100%;
+  border-radius: var(--radius-round);
+  background: var(--color-accent);
+}
+
+/* ---- Home ---- */
+#main > h1 { font: 700 26px/1.2 var(--font-display); margin-block-end: var(--space-4); }
+
+.semester { margin-block-end: var(--space-2); }
+.semester > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: 44px;
+  list-style: none;
+  cursor: pointer;
+  font: 500 13px/1.4 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.semester > summary::-webkit-details-marker { display: none; }
+.semester[open] > summary .icon { transform: rotate(180deg); }
+
+/* Mockup rhythm: 10px from a course heading to its cards and between cards,
+   20px between courses. */
+.course { margin-block-start: 10px; }
+.course + .course { margin-block-start: 20px; }
+.course h2 { font: 600 15px/1.4 var(--font-body); margin-block-end: 10px; }
+.name-ar { font-weight: 400; color: var(--color-muted); }
+
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+@media (min-width: 700px) {
+  .cards { grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); }
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  block-size: 100%;
+  padding: 14px var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-4);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.card:hover { border-color: var(--color-accent-strong); color: var(--color-text); }
+.card-line { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+.card-title { font: 600 17px/1.3 var(--font-display); }
+.card-badge { flex: none; font: 700 14px/1.4 var(--font-mono); color: var(--color-accent); }
+.card-badge.not-taken { font: 400 13px/1.4 var(--font-body); color: var(--color-muted); }
+.card-badge.older { color: var(--color-muted); }
+.older-label { font: 400 12px var(--font-body); }
+.card-bar.older .bar-fill { background: var(--color-muted); }
+.card-description { font-size: 14px; color: var(--color-muted); }
+.card-meta { font: 400 12px/1.5 var(--font-mono); color: var(--color-muted); }
+
+.clear-scores { margin-block-start: var(--space-5); }
+
+/* ---- Exam header ---- */
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+  font: 400 13px/1.4 var(--font-mono);
+  letter-spacing: 0.03em;
+  color: var(--color-muted);
+}
+.breadcrumb li { display: flex; align-items: center; }
+.breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  padding-inline: 6px;
+  text-decoration: none;
+}
+.breadcrumb li:first-child a { padding-inline-start: 0; }
+.breadcrumb [aria-current] { padding-inline: 6px; overflow-wrap: anywhere; }
+
+.exam-header { display: flex; flex-direction: column; gap: 10px; }
+.exam-header .breadcrumb { margin-block-end: 14px; } /* 24px to the title, with the gap */
+.exam-header h1 { font: 700 36px/1.15 var(--font-display); overflow-wrap: anywhere; }
+@media (max-width: 599px) {
+  .exam-header h1 { font-size: 28px; }
+}
+.exam-course { font-weight: 600; }
+.exam-course .name-ar { font-size: 15px; }
+.exam-meta { color: var(--color-muted); }
+
+/* ---- Score summary ---- */
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-4);
+  background: var(--color-surface);
+}
+.summary[hidden] { display: none; }
+.score-head { display: flex; flex-direction: column; gap: var(--space-1); }
+.score-line { display: flex; align-items: baseline; gap: 10px; }
+.big-score { font: 700 48px/1 var(--font-mono); }
+.score-percent { font: 400 22px/1 var(--font-mono); color: var(--color-accent); }
+.summary > .bar { block-size: 8px; }
+.topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.topic {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  overflow-wrap: anywhere;
+}
+.topic-name { font-size: 14px; color: var(--color-muted); }
+.topic-count { font: 700 20px/1.2 var(--font-mono); }
+.topic-percent { font: 400 14px var(--font-mono); color: var(--color-muted); }
+.topic .bar-fill { background: var(--color-text); }
+
+/* ---- Exam layout ---- */
+.exam-layout { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--space-6); }
+.questions { flex: 999 1 560px; min-inline-size: 0; display: flex; flex-direction: column; gap: var(--space-5); }
+.side { flex: 1 1 280px; display: flex; flex-direction: column; gap: var(--space-4); }
+/* The whole side column sticks (a sticky child of a short column would have no
+   room to move); it scrolls inside itself on short screens so "Check Answers"
+   stays reachable. */
+@media (min-width: 900px) {
+  .side {
+    position: sticky;
+    inset-block-start: var(--space-4);
+    max-block-size: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+}
+
+/* ---- Question cards ---- */
+.question {
+  position: relative;
+  min-inline-size: 0; /* a fieldset is as wide as its widest content by default */
+  margin: 0;
+  padding: var(--space-4) 20px 22px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-4);
+  background: var(--color-surface);
+}
+/* A floated legend sits inside the card instead of cutting through its border. */
+/* The space below the question sits on the legend itself: an element that clears
+   a float loses its own top margin, so a margin on the answers would vanish. */
+.question > legend { float: inline-start; inline-size: 100%; padding: 0; margin-block-end: var(--space-3); }
+.question > legend + * { clear: both; margin-block-start: 0; }
+.question > * + * { margin-block-start: var(--space-3); }
+.question-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-block-size: 44px; /* the height of the Report control beside it */
+  padding-inline-end: 48px; /* room for the Report control */
+}
+.question-text {
+  display: block;
+  margin-block-start: var(--space-3);
+  font: 600 20px/1.4 var(--font-display);
+  overflow-wrap: anywhere;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-1) 10px;
+  border-radius: var(--radius-2);
+  font-size: 14px;
+  font-weight: 600;
+}
+.status[hidden] { display: none; }
+.status-correct { background: var(--color-correct-bg); color: var(--color-correct-text); }
+.status-incorrect { background: var(--color-incorrect-bg); color: var(--color-incorrect-text); }
+.status-unanswered { background: var(--color-raised); color: var(--color-muted); }
+
+/* ---- Options and the four answer states ---- */
+.options { display: grid; gap: var(--space-2); }
+@media (min-width: 480px) {
+  .options-tf { grid-template-columns: 1fr 1fr; }
+}
+.option {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  min-block-size: 52px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  background: var(--color-bg);
+  cursor: pointer;
+}
+.option input { inline-size: 18px; block-size: 18px; margin: 0; accent-color: var(--color-accent-strong); }
+.chip {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  inline-size: 28px;
+  block-size: 28px;
+  border-radius: var(--radius-1);
+  background: var(--color-raised);
+  color: var(--color-muted);
+  font: 700 14px var(--font-mono);
+}
+.option-text { flex: 1 1 8em; min-inline-size: 0; overflow-wrap: anywhere; }
+.end-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-inline-start: auto;
+  font-size: 14px;
+  font-weight: 600;
+}
+.end-label:empty { display: none; }
+
+/* Before grading */
+.option:hover:not(:has(input:disabled)) { background: var(--color-raised); }
+.option:has(input:checked):not(:has(input:disabled)) { border-color: var(--color-accent-strong); background: var(--color-raised); }
+.option:has(input:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.option:has(input:disabled) { cursor: default; }
+
+/* After grading */
+.option.picked-correct { border-color: var(--color-correct); background: var(--color-correct-bg); }
+.picked-correct .chip { background: var(--color-correct); color: var(--color-on-status); }
+.picked-correct .end-label { color: var(--color-correct-text); }
+.option.picked-wrong { border-color: var(--color-incorrect); background: var(--color-incorrect-bg); }
+.picked-wrong .chip { background: var(--color-incorrect); color: var(--color-on-status); }
+.picked-wrong .end-label { color: var(--color-incorrect-text); }
+.option.missed {
+  padding: 7px 11px; /* keeps the row the same size with a 2px border */
+  border: 2px dashed var(--color-missed);
+  background: var(--color-missed-bg);
+}
+.missed .chip { background: transparent; box-shadow: inset 0 0 0 2px var(--color-missed); color: var(--color-missed-text); }
+.missed .end-label { color: var(--color-missed-text); }
+
+.explanation {
+  padding: 14px var(--space-4);
+  border-radius: var(--radius-3);
+  background: var(--color-raised);
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.explanation[hidden] { display: none; }
+.why { color: var(--color-accent); font-weight: 600; }
+
+/* ---- Report control ---- */
+.report {
+  position: absolute;
+  inset-block-start: var(--space-4); /* level with the question's header row */
+  inset-inline-end: 20px;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  margin: 0;
+  border-radius: var(--radius-3);
+  color: var(--color-muted);
+}
+.report[hidden] { display: none; }
+.report:hover { background: var(--color-raised); color: var(--color-text); }
+
+/* ---- Code blocks ---- */
+.code { border: 1px solid var(--code-border); border-radius: var(--radius-3); overflow: hidden; }
+.code-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-block-end: 1px solid var(--code-border);
+  background: var(--code-bar);
+  color: var(--code-label);
+  font: 400 12px/1.4 var(--font-mono);
+}
+.code pre {
+  margin: 0;
+  padding: var(--space-4) 18px;
+  overflow-x: auto;
+  direction: ltr;
+  background: var(--code-bg);
+  color: var(--code-text);
+  font: 400 15px/1.6 var(--font-mono);
+}
+.code code { font: inherit; }
+.syn-command { color: var(--syn-command); font-weight: 700; }
+.syn-flag { color: var(--syn-flag); }
+.syn-value { color: var(--syn-value); }
+.syn-number { color: var(--syn-number); }
+.syn-string { color: var(--syn-string); }
+.syn-comment { color: var(--syn-comment); font-style: italic; }
+
+/* ---- Question map ---- */
+.map {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-4);
+  background: var(--color-surface);
+}
+.map-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.map-square {
+  position: relative;
+  display: grid;
+  place-items: center;
+  block-size: 44px;
+  border: 1px dashed var(--color-muted);
+  border-radius: var(--radius-2);
+  color: var(--color-muted);
+  font: 700 14px var(--font-mono);
+  text-decoration: none;
+}
+.map-square .icon { position: absolute; inset-block-start: 3px; inset-inline-end: 3px; }
+.map-square.answered { border: 1px solid var(--color-accent-strong); color: var(--color-accent); }
+.map-square.map-correct { border: 1px solid transparent; background: var(--color-correct-bg); color: var(--color-correct-text); }
+.map-square.map-incorrect { border: 1px solid var(--color-incorrect); background: var(--color-incorrect-bg); color: var(--color-incorrect-text); }
+.map-square.map-unanswered { border: 1px dashed var(--color-muted); color: var(--color-muted); }
+.map-legend { font-size: 13px; color: var(--color-muted); }
+.map-legend[hidden] { display: none; }
+.map .button-primary { inline-size: 100%; }
+@media (min-width: 900px) {
+  /* With a long exam the map scrolls; keep the main button pinned in view. */
+  .map .button-primary { position: sticky; inset-block-end: 0; }
+}
+
+/* ---- Next-exam card ---- */
+.next-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: 14px var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-4);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+}
+.next-card:hover { border-color: var(--color-accent-strong); color: var(--color-text); }
+.next-card .eyebrow { font-size: 12px; }
+.next-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font: 600 17px/1.3 var(--font-display);
+  overflow-wrap: anywhere;
+}
+.next-title .icon { color: var(--color-accent); }
+.next-meta { font-size: 14px; color: var(--color-muted); }
+
+/* ---- Phones ---- */
+@media (max-width: 599px) {
+  .container { padding-inline: var(--space-4); }
+  .home-link { gap: 10px; inline-size: calc(100% - 32px); }
+  .wordmark-tile { block-size: 32px; }
+  .wordmark-tile svg { block-size: 22px; }
+  .wordmark-en { font-size: 14px; }
+  .question { padding-inline: var(--space-4); }
+  .report { inset-inline-end: var(--space-4); }
+  .summary { padding: var(--space-4); }
+  /* The last crumb repeats the title right below it; keep it for screen readers only. */
+  .breadcrumb li:last-child {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .breadcrumb li:nth-last-child(2) .crumb-sep { display: none; }
+}

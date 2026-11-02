@@ -29,6 +29,32 @@ export function el(tag, attrs = {}, ...children) {
   return node;
 }
 
+// Icon shapes follow Lucide (https://lucide.dev), ISC License:
+// Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part of
+// Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2022.
+// Permission to use, copy, modify, and/or distribute this software for any purpose
+// with or without fee is hereby granted, provided that the above copyright notice and
+// this permission notice appear in all copies.
+const ICONS = {
+  check: [["path", { d: "M20 6 9 17l-5-5" }]],
+  x: [["path", { d: "M18 6 6 18" }], ["path", { d: "m6 6 12 12" }]],
+  dash: [["path", { d: "M5 12h14" }]],
+  flag: [["path", { d: "M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" }], ["line", { x1: 4, x2: 4, y1: 22, y2: 15 }]],
+  "arrow-right": [["path", { d: "M5 12h14" }], ["path", { d: "m12 5 7 7-7 7" }]],
+  "chevron-down": [["path", { d: "m6 9 6 6 6-6" }]],
+  terminal: [["polyline", { points: "4 17 10 11 4 5" }], ["line", { x1: 12, x2: 20, y1: 19, y2: 19 }]],
+  info: [["circle", { cx: 12, cy: 12, r: 10 }], ["path", { d: "M12 16v-4" }], ["path", { d: "M12 8h.01" }]],
+  alert: [["circle", { cx: 12, cy: 12, r: 10 }], ["line", { x1: 12, x2: 12, y1: 8, y2: 12 }], ["line", { x1: 12, x2: 12.01, y1: 16, y2: 16 }]],
+};
+
+export function icon(name, size) {
+  return el("svg", {
+    class: `icon icon-${name}`, viewBox: "0 0 24 24", width: size, height: size, fill: "none",
+    stroke: "currentColor", "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round",
+    "aria-hidden": "true", focusable: "false",
+  }, ICONS[name].map(([tag, attrs]) => el(tag, attrs)));
+}
+
 export function bilingualName(en, ar) {
   return el("span", { class: "name" }, en, " · ", el("span", { lang: "ar", dir: "rtl", class: "name-ar" }, ar));
 }
@@ -167,8 +193,10 @@ export function showBanner(message, { url, reportError, kind = "error" } = {}) {
     : null;
   banner.replaceChildren(
     el("div", { class: `banner banner-${kind}`, role: kind === "error" ? "alert" : "status" },
-      el("p", {}, message, url ? [" ", el("span", { class: "banner-url" }, url)] : null),
-      report),
+      icon(kind === "error" ? "alert" : "info", 16),
+      el("div", { class: "banner-body" },
+        el("p", {}, message, url ? [" ", el("span", { class: "banner-url" }, url)] : null),
+        report)),
   );
 }
 

@@ -1,6 +1,6 @@
 // Home page: semesters > courses > exam cards, with each exam's last score.
 import {
-  LoadError, bilingualName, el, emptyState, fetchJson, installErrorHandlers, loadState, showBanner, updateState,
+  LoadError, bilingualName, el, emptyState, fetchJson, icon, installErrorHandlers, loadState, showBanner, updateState,
 } from "./common.js?v=__BUILD__";
 
 installErrorHandlers();
@@ -50,7 +50,7 @@ function render(manifest) {
           el("section", { class: "course", id: `c-${semester.id}-${course.code}` },
             el("h2", {}, bilingualName(course.name.en, course.name.ar)),
             el("ul", { class: "cards" }, exams.map((exam) => el("li", {}, examCard(exam))))));
-      const summary = el("summary", {}, semester.name);
+      const summary = el("summary", {}, el("span", {}, semester.name), icon("chevron-down", 18));
       const details = el("details", { class: "semester", id: `s-${semester.id}`, "data-semester": semester.id }, summary, groups);
       // Save on the summary's click (also fired by Enter and Space), not on the
       // toggle event, which also fires later for sections opened from code.
