@@ -1,0 +1,29 @@
+{
+  "title": "Fixture Exam",
+  "course": "SEC3302",
+  "semester": "second-2030-31",
+  "description": "",
+  "date": "2026-11-01",
+  "questions": [
+    {
+      "type": "mc",
+      "topic": "Firewalls",
+      "question": "Which chain handles incoming packets?",
+      "options": [
+        "INPUT",
+        "OUTPUT",
+        "FORWARD",
+        "PREROUTING"
+      ],
+      "correct": "A",
+      "explanation": "INPUT handles packets addressed to the host."
+    },
+    {
+      "type": "tf",
+      "topic": "Attacks",
+      "question": "A SYN flood leaves connections half-open.",
+      "correct": true,
+      "explanation": "The attacker never sends the final ACK."
+    }
+  ]
+}

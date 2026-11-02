@@ -1,0 +1,19 @@
+{
+  "semesters": [],
+  "courses": [
+    {
+      "code": "SEC3302",
+      "name": {
+        "en": "Network Security",
+        "ar": "أمن الشبكات"
+      }
+    },
+    {
+      "code": "CS3019",
+      "name": {
+        "en": "Design & Analysis of Algorithms",
+        "ar": "تصميم وتحليل الخوارزميات"
+      }
+    }
+  ]
+}

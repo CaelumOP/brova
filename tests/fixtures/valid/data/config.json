@@ -1,0 +1,24 @@
+{
+  "semesters": [
+    {
+      "id": "first-2026-27",
+      "name": "First Semester 2026/27"
+    }
+  ],
+  "courses": [
+    {
+      "code": "SEC3302",
+      "name": {
+        "en": "Network Security",
+        "ar": "أمن الشبكات"
+      }
+    },
+    {
+      "code": "CS3019",
+      "name": {
+        "en": "Design & Analysis of Algorithms",
+        "ar": "تصميم وتحليل الخوارزميات"
+      }
+    }
+  ]
+}

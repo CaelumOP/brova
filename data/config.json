@@ -1,0 +1,12 @@
+{
+  "semesters": [
+    { "id": "first-2026-27", "name": "First Semester 2026/27" }
+  ],
+  "courses": [
+    { "code": "CS3019", "name": { "en": "Design & Analysis of Algorithms", "ar": "تصميم وتحليل الخوارزميات" } },
+    { "code": "SEC3104", "name": { "en": "Security Risk Management", "ar": "إدارة المخاطر الأمنية" } },
+    { "code": "SEC3204", "name": { "en": "Software Security", "ar": "أمن البرامج" } },
+    { "code": "SEC3205", "name": { "en": "Web Development & Security", "ar": "تطوير وأمن الويب" } },
+    { "code": "SEC3302", "name": { "en": "Network Security", "ar": "أمن الشبكات" } }
+  ]
+}

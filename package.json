@@ -1,0 +1,19 @@
+{
+  "name": "brova",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate.js",
+    "check": "node scripts/check-source.js",
+    "build": "node scripts/build.js",
+    "preview": "npm run build && http-server _site -c-1 -p 8080"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "http-server": "14.1.1"
+  }
+}

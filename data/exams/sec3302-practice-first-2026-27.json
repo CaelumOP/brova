@@ -1,0 +1,123 @@
+{
+  "title": "Network Security — Practice Exam 1",
+  "course": "SEC3302",
+  "semester": "first-2026-27",
+  "description": "Firewalls, common network attacks, and IPsec VPNs.",
+  "date": "2026-11-02",
+  "questions": [
+    {
+      "type": "mc",
+      "topic": "Firewalls",
+      "question": "What does this rule do on a Linux host?",
+      "code": "iptables -A INPUT -p tcp --dport 22 -j DROP",
+      "codeLanguage": "shell",
+      "options": [
+        "Allows incoming SSH connections",
+        "Silently discards incoming TCP traffic to port 22",
+        "Discards outgoing TCP traffic to port 22",
+        "Refuses incoming SSH connections with an ICMP error"
+      ],
+      "correct": "B",
+      "explanation": "The rule is appended (-A) to the INPUT chain, matches TCP traffic to destination port 22 (SSH), and jumps to DROP, which discards packets without replying. REJECT, not DROP, would send an error back, so option D is wrong."
+    },
+    {
+      "type": "tf",
+      "topic": "Firewalls",
+      "question": "A stateless packet filter keeps track of TCP connections, so it can allow reply packets only for connections that were opened from inside.",
+      "correct": false,
+      "explanation": "Tracking connections is what a stateful firewall does. A stateless filter judges each packet on its own header fields, with no memory of earlier packets."
+    },
+    {
+      "type": "mc",
+      "topic": "Network Attacks",
+      "question": "Which attack sends many TCP SYN segments to a server and never completes the handshake, filling its table of half-open connections?",
+      "options": [
+        "Smurf attack",
+        "ARP spoofing",
+        "SYN flood",
+        "DNS amplification",
+        "Ping of death"
+      ],
+      "correct": "C",
+      "explanation": "A SYN flood leaves each connection half-open, so the server keeps state for every one until its backlog is full. DNS amplification is also a denial of service, but it floods the victim with large DNS replies instead of exhausting connection state."
+    },
+    {
+      "type": "mc",
+      "topic": "VPNs and IPsec",
+      "question": "Which IPsec protocol provides confidentiality by encrypting the payload?",
+      "options": [
+        "ESP (Encapsulating Security Payload)",
+        "AH (Authentication Header)",
+        "GRE (Generic Routing Encapsulation)",
+        "L2TP (Layer 2 Tunneling Protocol)"
+      ],
+      "correct": "A",
+      "explanation": "ESP encrypts the payload and can also authenticate it. AH authenticates packets but does not encrypt anything, which makes it the most tempting wrong answer."
+    },
+    {
+      "type": "tf",
+      "topic": "Network Attacks",
+      "question": "An attacker can use ARP spoofing to redirect traffic of hosts on a different subnet, on the far side of a router.",
+      "correct": false,
+      "explanation": "ARP works only inside one broadcast domain, and routers do not forward ARP messages. ARP spoofing affects hosts on the attacker's own local network."
+    },
+    {
+      "type": "tf",
+      "topic": "VPNs and IPsec",
+      "question": "In IPsec tunnel mode with ESP, the whole original IP packet, including its header, is encrypted and placed inside a new IP packet.",
+      "correct": true,
+      "explanation": "Tunnel mode wraps the entire original packet in a new outer IP header, so the inner addresses are hidden. Transport mode protects only the payload and keeps the original header."
+    },
+    {
+      "type": "mc",
+      "topic": "Firewalls",
+      "question": "A firewall checks these rules from top to bottom and applies the first one that matches. A packet arrives for 10.0.0.5 on TCP port 80. What happens to it?",
+      "code": "Rule 1: allow tcp  any -> 10.0.0.5 port 443\nRule 2: deny  ip   any -> any",
+      "options": [
+        "It is allowed by rule 1",
+        "It is allowed, because no rule names port 80",
+        "It is denied by rule 1",
+        "It is dropped without matching any rule",
+        "It is denied by rule 2",
+        "It is allowed by an implicit default rule"
+      ],
+      "correct": "E",
+      "explanation": "Rule 1 matches only port 443, so the packet falls through to rule 2, which denies all IP traffic. Option A is tempting because the address matches rule 1, but the port does not."
+    },
+    {
+      "type": "mc",
+      "topic": "Network Attacks",
+      "question": "What kind of scan does this command run?",
+      "code": "nmap -sS -p 1-1024 192.168.1.10",
+      "codeLanguage": "shell",
+      "options": [
+        "A full TCP connect scan",
+        "A UDP scan",
+        "A ping sweep only",
+        "A TCP SYN (half-open) scan of ports 1 to 1024"
+      ],
+      "correct": "D",
+      "explanation": "-sS sends a SYN and reads the reply without completing the handshake, which is why it is called half-open. A full connect scan is -sT, so option A is wrong."
+    },
+    {
+      "type": "mc",
+      "topic": "VPNs and IPsec",
+      "question": "What is the main job of IKE (Internet Key Exchange) in IPsec?",
+      "options": [
+        "Encrypting each data packet",
+        "Negotiating security associations and the keys they use",
+        "Compressing packet headers",
+        "Assigning IP addresses to VPN clients"
+      ],
+      "correct": "B",
+      "explanation": "IKE sets up the security associations: it authenticates the peers and agrees on algorithms and keys. The packets themselves are then protected by ESP or AH, so option A describes ESP, not IKE."
+    },
+    {
+      "type": "tf",
+      "topic": "Firewalls",
+      "question": "A DMZ puts public-facing servers in a network segment separate from the internal network.",
+      "correct": true,
+      "explanation": "A DMZ (demilitarized zone) lets outside users reach public servers while a firewall keeps those servers apart from internal hosts, so a compromised web server does not give direct access to the internal network."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Algorithms Quiz",
+  "course": "CS3019",
+  "semester": "first-2026-27",
+  "description": "",
+  "date": "2026-10-20",
+  "questions": [
+    {
+      "type": "mc",
+      "topic": "Sorting",
+      "question": "Which chain handles incoming packets?",
+      "options": [
+        "INPUT",
+        "OUTPUT",
+        "FORWARD",
+        "PREROUTING"
+      ],
+      "correct": "A",
+      "explanation": "INPUT handles packets addressed to the host.",
+      "code": "for i in range(n): pass"
+    },
+    {
+      "type": "tf",
+      "topic": "Graphs",
+      "question": "A SYN flood leaves connections half-open.",
+      "correct": true,
+      "explanation": "The attacker never sends the final ACK."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Brova site configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["semesters", "courses"],
+  "properties": {
+    "semesters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+          "name": { "$ref": "#/$defs/text" }
+        }
+      }
+    },
+    "courses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "name"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^[A-Z]{2,4}[0-9]{4}$" },
+          "name": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["en", "ar"],
+            "properties": {
+              "en": { "$ref": "#/$defs/text" },
+              "ar": { "$ref": "#/$defs/text" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1, "pattern": "\\S" }
+  }
+}

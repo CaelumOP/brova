@@ -1,0 +1,1374 @@
+{
+  "title": "Web Development & Security — Midterm Mock Exam",
+  "course": "SEC3205",
+  "semester": "first-2026-27",
+  "description": "The full midterm question bank: chapters 1 to 7, 105 multiple-choice questions.",
+  "date": "2026-11-02",
+  "questions": [
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which technology defines the structure of a web page?",
+      "options": [
+        "CSS",
+        "HTML",
+        "SMTP",
+        "SQL Server"
+      ],
+      "correct": "B",
+      "explanation": "HTML defines a page's structure. CSS styles it, SMTP sends email, and SQL Server is a database."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "What does a client do in the client-server model?",
+      "options": [
+        "Processes incoming requests",
+        "Prints network cables",
+        "Changes monitor hardware",
+        "Sends requests"
+      ],
+      "correct": "D",
+      "explanation": "The client sends requests, and the server processes them and replies, so option A describes the server."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which type of website shows the same fixed content to every user?",
+      "options": [
+        "A static website",
+        "A dynamic website",
+        "A database management system",
+        "An authentication server"
+      ],
+      "correct": "A",
+      "explanation": "A static website serves the same fixed files to every visitor; a dynamic website builds pages for each request or user."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "What does elastic provisioning do?",
+      "options": [
+        "Keeps server capacity fixed",
+        "Changes the website font family",
+        "Scales resources with demand",
+        "Creates a new HTML heading tag"
+      ],
+      "correct": "C",
+      "explanation": "Elastic provisioning adds or removes resources as demand rises and falls, the opposite of fixed capacity."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which developer works on both the front end and back end?",
+      "options": [
+        "Front-end developer",
+        "Full-stack developer",
+        "Database backup administrator",
+        "Network hardware technician"
+      ],
+      "correct": "B",
+      "explanation": "A full-stack developer works on both the front end (the browser side) and the back end (the server and database)."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "What is HTML?",
+      "options": [
+        "A markup language",
+        "A programming language",
+        "A database management system",
+        "A network encryption protocol"
+      ],
+      "correct": "A",
+      "explanation": "HTML is a markup language: it labels content with tags but has no logic such as loops or variables, so it is not a programming language."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which HTML element contains the displayed page content?",
+      "options": [
+        "<head>",
+        "<meta>",
+        "<title>",
+        "<body>"
+      ],
+      "correct": "D",
+      "explanation": "<body> holds everything shown on the page; <head>, <meta>, and <title> hold information about the page."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which HTML tag represents the highest-level heading?",
+      "options": [
+        "<h2>",
+        "<audio>",
+        "<h1>",
+        "<table>"
+      ],
+      "correct": "C",
+      "explanation": "<h1> is the top-level heading; <h2> is one level below it."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which attribute specifies the destination of a hyperlink?",
+      "options": [
+        "href",
+        "src",
+        "colspan",
+        "autofocus"
+      ],
+      "correct": "A",
+      "explanation": "href sets where a link points; src sets the source file of elements such as images and scripts."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which image attribute provides alternative text?",
+      "options": [
+        "src",
+        "alt",
+        "rowspan",
+        "method"
+      ],
+      "correct": "B",
+      "explanation": "alt gives text that is shown when the image cannot load and that screen readers read aloud; src is the image's file path."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which HTML element represents a block of navigation links?",
+      "options": [
+        "<header>",
+        "<textarea>",
+        "<input>",
+        "<nav>"
+      ],
+      "correct": "D",
+      "explanation": "<nav> marks a block of navigation links; <header> is the introductory area of a page or section."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which HTML tag creates a table row?",
+      "options": [
+        "<td>",
+        "<script>",
+        "<tr>",
+        "<fieldset>"
+      ],
+      "correct": "C",
+      "explanation": "<tr> creates a table row; <td> creates a cell inside a row."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which form attribute specifies where submitted data is sent?",
+      "options": [
+        "method",
+        "action",
+        "colspan",
+        "autofocus"
+      ],
+      "correct": "B",
+      "explanation": "action is the URL that receives the form data; method sets how it is sent (GET or POST)."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which control allows one choice from a group sharing the same name?",
+      "options": [
+        "Radio buttons",
+        "Checkboxes",
+        "Password input fields",
+        "Multi-line text areas"
+      ],
+      "correct": "A",
+      "explanation": "Radio buttons that share a name allow only one choice; checkboxes allow several."
+    },
+    {
+      "type": "mc",
+      "topic": "Introduction to Web Development & HTML",
+      "question": "Which HTML attribute makes an input mandatory before submission?",
+      "options": [
+        "pattern",
+        "rowspan",
+        "autofocus",
+        "required"
+      ],
+      "correct": "D",
+      "explanation": "required stops the form from submitting until the field has a value; pattern checks the format of a value."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "What does CSS do?",
+      "options": [
+        "It creates the structure of a web page.",
+        "It controls the style and layout of a web page.",
+        "It adds calculations to a web page.",
+        "It stores information about a web page."
+      ],
+      "correct": "B",
+      "explanation": "CSS controls style and layout. HTML creates the structure, which is what option A describes."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "Where is Inline CSS written?",
+      "options": [
+        "Inside the <head> using a <style> tag.",
+        "Inside a separate .css file.",
+        "Inside a JavaScript function.",
+        "Inside the HTML element using the style attribute."
+      ],
+      "correct": "D",
+      "explanation": "Inline CSS goes in an element's style attribute; CSS in a <style> tag inside the <head> is internal CSS."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "Which CSS type uses a separate .css file?",
+      "options": [
+        "External CSS",
+        "Inline CSS",
+        "Internal CSS",
+        "Embedded JavaScript"
+      ],
+      "correct": "A",
+      "explanation": "External CSS lives in a separate .css file linked from the page; internal CSS sits in a <style> tag."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "Which symbol is used for a class selector in CSS?",
+      "options": [
+        "#",
+        "*",
+        ".",
+        "@"
+      ],
+      "correct": "C",
+      "explanation": "A class selector starts with a dot, as in .note; # is used for ID selectors."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "Which symbol is used for an ID selector?",
+      "options": [
+        "#",
+        ".",
+        "*",
+        ","
+      ],
+      "correct": "A",
+      "explanation": "An ID selector starts with #, as in #menu; the dot is used for classes."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "What does the universal selector * select?",
+      "options": [
+        "Only paragraph elements",
+        "Only elements with a class",
+        "Only the element with a specific ID",
+        "All HTML elements"
+      ],
+      "correct": "D",
+      "explanation": "The universal selector * matches every element on the page."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "What is JavaScript mainly used for on web pages?",
+      "options": [
+        "Defining the page's colors and fonts",
+        "Adding interactive features to web pages",
+        "Creating the basic HTML structure",
+        "Linking HTML to a CSS file"
+      ],
+      "correct": "B",
+      "explanation": "JavaScript adds interactive behavior. Colors and fonts are CSS, and structure is HTML."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "Which command displays an alert dialog without a text input field?",
+      "options": [
+        "document.write()",
+        "prompt()",
+        "alert()",
+        "getElementById()"
+      ],
+      "correct": "C",
+      "explanation": "alert() shows a message with only an OK button; prompt() also shows a text input field."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "Which HTML tag is used to write JavaScript code?",
+      "options": [
+        "<script>",
+        "<style>",
+        "<link>",
+        "<title>"
+      ],
+      "correct": "A",
+      "explanation": "JavaScript goes inside <script> tags; <style> holds CSS."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "What does the DOM allow JavaScript to do?",
+      "options": [
+        "Create external CSS files",
+        "Connect the computer to the internet",
+        "Change the browser's operating system",
+        "Access and modify HTML elements"
+      ],
+      "correct": "D",
+      "explanation": "The DOM represents the page as objects, so JavaScript can read and change its elements."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "Which event handler runs when a user clicks an element?",
+      "options": [
+        "onload",
+        "onclick",
+        "onmouseover",
+        "onsubmit"
+      ],
+      "correct": "B",
+      "explanation": "onclick runs when an element is clicked; onmouseover runs when the pointer moves over it."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "What does innerHTML do?",
+      "options": [
+        "Selects an element by its ID",
+        "Detects when the mouse moves",
+        "Sets or returns an element's HTML content",
+        "Creates a new CSS file"
+      ],
+      "correct": "C",
+      "explanation": "innerHTML gets or sets the HTML inside an element. Selecting an element by its ID is what getElementById() does."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "What is a variable used for in JavaScript?",
+      "options": [
+        "Storing information",
+        "Styling HTML elements",
+        "Creating a hyperlink",
+        "Detecting mouse movement"
+      ],
+      "correct": "A",
+      "explanation": "A variable stores a value under a name so the program can use it later."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "Which operator means \"greater than\"?",
+      "options": [
+        ">=",
+        "==",
+        "<=",
+        ">"
+      ],
+      "correct": "D",
+      "explanation": "> means greater than; >= means greater than or equal to."
+    },
+    {
+      "type": "mc",
+      "topic": "CSS & JavaScript",
+      "question": "What is a function in JavaScript?",
+      "options": [
+        "A CSS rule that changes colors",
+        "A block of code designed to perform a specific task",
+        "An HTML element used to display images",
+        "A variable that stores only text"
+      ],
+      "correct": "B",
+      "explanation": "A function is a named block of code that performs a specific task when it is called."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What does HTTPS help protect?",
+      "options": [
+        "The website's design",
+        "Data sent between the browser and server",
+        "The website's loading speed",
+        "The browser's saved bookmarks"
+      ],
+      "correct": "B",
+      "explanation": "HTTPS encrypts data traveling between the browser and the server, so others on the network cannot read or change it."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "Which HTTP method is commonly used to retrieve data?",
+      "options": [
+        "POST",
+        "PUT",
+        "GET",
+        "DELETE"
+      ],
+      "correct": "C",
+      "explanation": "GET requests data from the server; POST sends data to it."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What is the main purpose of a URL?",
+      "options": [
+        "To identify the location of a resource on the web",
+        "To encrypt website data",
+        "To verify a user's identity",
+        "To store website passwords"
+      ],
+      "correct": "A",
+      "explanation": "A URL is the address of a resource on the web."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What does DNS do?",
+      "options": [
+        "Encrypts data between websites",
+        "Checks user passwords",
+        "Blocks malicious browser extensions",
+        "Translates domain names into IP addresses"
+      ],
+      "correct": "D",
+      "explanation": "DNS translates a domain name such as example.com into the IP address of its server."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What can happen during DNS spoofing?",
+      "options": [
+        "A website loads faster than usual",
+        "A user may be directed to a fake website",
+        "A browser automatically updates",
+        "A server stores more website data"
+      ],
+      "correct": "B",
+      "explanation": "In DNS spoofing, forged DNS answers can send the user to an attacker's fake website."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "Which technique can help protect against DNS spoofing?",
+      "options": [
+        "Disabling all website images",
+        "Using shorter URLs",
+        "Using DNSSEC",
+        "Clearing the browser history"
+      ],
+      "correct": "C",
+      "explanation": "DNSSEC signs DNS records, so resolvers can detect forged answers."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What is SQL injection?",
+      "options": [
+        "Injecting malicious SQL input to attack a database",
+        "Stealing a user's session cookie through a browser extension",
+        "Sending a user to a fake website using DNS spoofing",
+        "Tricking a user into making an unwanted request"
+      ],
+      "correct": "A",
+      "explanation": "SQL injection puts malicious SQL into user input so that it runs against the database. Option D describes CSRF."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What is Cross-Site Scripting (XSS)?",
+      "options": [
+        "A method for encrypting website traffic",
+        "A technique for managing user sessions",
+        "A method for checking user permissions",
+        "An attack involving malicious scripts running in a user's browser"
+      ],
+      "correct": "D",
+      "explanation": "In XSS, a site delivers an attacker's script, which then runs in the victim's browser."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "Why should web applications validate user input?",
+      "options": [
+        "To make web pages load without images",
+        "To help prevent malicious input and attacks",
+        "To allow every user to access all pages",
+        "To avoid using a web server"
+      ],
+      "correct": "B",
+      "explanation": "Validating input rejects malicious or malformed data before it can be used in an attack."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What is authentication?",
+      "options": [
+        "Deciding which files a user can download",
+        "Tracking a user's activity across requests",
+        "Verifying who a user is",
+        "Encrypting all website images"
+      ],
+      "correct": "C",
+      "explanation": "Authentication checks who the user is; deciding what they may access is authorization."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What does access control determine?",
+      "options": [
+        "What a user is allowed to access",
+        "How a domain name is translated",
+        "How a browser loads HTML",
+        "Which HTTP method is fastest"
+      ],
+      "correct": "A",
+      "explanation": "Access control decides what a user is allowed to see or do."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What is the purpose of session management?",
+      "options": [
+        "To translate domain names into IP addresses",
+        "To validate SQL queries",
+        "To encrypt every image on a website",
+        "To maintain a user's login state across requests"
+      ],
+      "correct": "D",
+      "explanation": "Session management keeps a user logged in across separate HTTP requests, because HTTP itself does not remember them."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "What does a web server do?",
+      "options": [
+        "Converts domain names into IP addresses",
+        "Receives requests and serves web content",
+        "Verifies a user's identity in every application",
+        "Prevents every type of cyberattack automatically"
+      ],
+      "correct": "B",
+      "explanation": "A web server receives HTTP requests and sends back pages and other content."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "How does browser caching help?",
+      "options": [
+        "It prevents all phishing attacks",
+        "It replaces the need for HTTPS",
+        "It can reduce loading time by reusing stored resources",
+        "It prevents users from submitting forms"
+      ],
+      "correct": "C",
+      "explanation": "Caching keeps copies of resources, so the browser can reuse them instead of downloading them again."
+    },
+    {
+      "type": "mc",
+      "topic": "Web Foundations & Security",
+      "question": "Where should important input validation and security checks be enforced?",
+      "options": [
+        "On the server",
+        "Only in client-side JavaScript",
+        "Only in the browser's address bar",
+        "Only in the website's HTML design"
+      ],
+      "correct": "A",
+      "explanation": "Users can change anything in their own browser, so the checks that matter must be enforced on the server."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "Where do client-side controls run?",
+      "options": [
+        "On the web server",
+        "In the user's browser",
+        "In the database",
+        "On the network"
+      ],
+      "correct": "B",
+      "explanation": "Client-side controls run in the user's browser, where the user can change them."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "What is the main purpose of client-side validation?",
+      "options": [
+        "To manage user permissions",
+        "To protect the database",
+        "To authenticate users",
+        "To improve user experience"
+      ],
+      "correct": "D",
+      "explanation": "Client-side validation gives the user quick feedback. It cannot protect the server, because it can be bypassed."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "Which side should enforce important security rules?",
+      "options": [
+        "Server-side",
+        "Client-side",
+        "Browser interface",
+        "HTML form"
+      ],
+      "correct": "A",
+      "explanation": "Only the server is under the site's control, so it must enforce the security rules."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "Why can client-side controls be bypassed?",
+      "options": [
+        "The server cannot receive requests",
+        "HTML cannot contain form fields",
+        "Users can modify browser code and values",
+        "Websites cannot use JavaScript"
+      ],
+      "correct": "C",
+      "explanation": "The browser is under the user's control: they can edit HTML, JavaScript, and request values with developer tools or a proxy."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "What can a user modify in the browser?",
+      "options": [
+        "The server's database directly",
+        "HTML attributes and JavaScript",
+        "The server's operating system directly",
+        "The website's domain registration"
+      ],
+      "correct": "B",
+      "explanation": "A user can change HTML attributes and JavaScript in their own browser, but not the server directly."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "What should the server do with an invalid request?",
+      "options": [
+        "Display the same page again",
+        "Ignore all future requests",
+        "Accept the request without checking",
+        "Validate it and reject it if necessary"
+      ],
+      "correct": "D",
+      "explanation": "The server must check every request and reject it if it is invalid."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "What is an advantage of client-side validation?",
+      "options": [
+        "It provides fast feedback",
+        "It guarantees complete security",
+        "It replaces server-side validation",
+        "It prevents all modified requests"
+      ],
+      "correct": "A",
+      "explanation": "Client-side validation gives fast feedback without a round trip to the server, but it provides no security."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "Why must the server validate user input?",
+      "options": [
+        "To improve the website's colors",
+        "To hide form fields",
+        "To enforce security rules",
+        "To replace the browser"
+      ],
+      "correct": "C",
+      "explanation": "Server-side validation enforces the security rules, because client-side checks can be skipped."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "What is the best validation practice?",
+      "options": [
+        "Use only HTML validation",
+        "Validate on the client and server",
+        "Use only JavaScript validation",
+        "Allow the browser to decide everything"
+      ],
+      "correct": "B",
+      "explanation": "Validate in both places: on the client for fast feedback, and on the server for security."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "Why should a server not trust hidden fields?",
+      "options": [
+        "They are always empty",
+        "They cannot be sent in HTTP requests",
+        "They automatically encrypt their values",
+        "Users can modify their values"
+      ],
+      "correct": "D",
+      "explanation": "A hidden field is only hidden from view; the user can still change its value before sending the form."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "What does disabling a button do?",
+      "options": [
+        "Prevents the server from receiving requests",
+        "Guarantees that the action is protected",
+        "Restricts interaction through the normal interface",
+        "Verifies the user's permissions"
+      ],
+      "correct": "C",
+      "explanation": "A disabled button only blocks the normal interface; the user can still send the same request another way."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "How should an online store handle product prices?",
+      "options": [
+        "Calculate or retrieve prices using trusted server-side data",
+        "Trust the price submitted by the browser",
+        "Use a hidden field as the final price",
+        "Rely only on JavaScript to calculate the price"
+      ],
+      "correct": "A",
+      "explanation": "The server should look up or calculate the price from trusted data, because any price the browser sends can be changed."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "What does authorization determine?",
+      "options": [
+        "Whether the user entered a password",
+        "Whether the website is online",
+        "Whether the browser supports JavaScript",
+        "Whether the user has permission to perform an action"
+      ],
+      "correct": "D",
+      "explanation": "Authorization decides whether a user may perform an action; checking a password is authentication."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "Why is hiding an Admin button not enough?",
+      "options": [
+        "Admin buttons must always be visible",
+        "The user may still access the endpoint directly",
+        "The browser cannot display admin pages",
+        "Hidden buttons automatically disable the server"
+      ],
+      "correct": "B",
+      "explanation": "Hiding the button does not protect the admin endpoint, which the user can still request directly. The server must check permissions on every request."
+    },
+    {
+      "type": "mc",
+      "topic": "Client-Side Controls",
+      "question": "What should security testing check?",
+      "options": [
+        "Whether the website has a good design",
+        "Whether all buttons have colors",
+        "Whether the server rejects unauthorized or invalid requests",
+        "Whether the browser loads images quickly"
+      ],
+      "correct": "C",
+      "explanation": "Security testing checks that the server rejects unauthorized or invalid requests, even when they are sent directly."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Where is PHP code executed?",
+      "options": [
+        "On the server",
+        "In the browser",
+        "Inside a CSS stylesheet",
+        "Inside an image editor"
+      ],
+      "correct": "A",
+      "explanation": "PHP runs on the server, and the browser receives only its output."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "What is the usual file extension for PHP files?",
+      "options": [
+        ".html",
+        ".php",
+        ".png",
+        ".mp3"
+      ],
+      "correct": "B",
+      "explanation": "PHP files usually end in .php."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which opening tag starts a PHP code block?",
+      "options": [
+        "<script>",
+        "<table>",
+        "<?php",
+        "<audio>"
+      ],
+      "correct": "C",
+      "explanation": "<?php starts a block of PHP code."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which symbol starts a PHP variable name?",
+      "options": [
+        "Hash symbol (#)",
+        "Question mark (?)",
+        "Exclamation mark (!)",
+        "Dollar sign ($)"
+      ],
+      "correct": "D",
+      "explanation": "PHP variable names start with $, as in $name."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which function defines a constant in PHP?",
+      "options": [
+        "define()",
+        "isset()",
+        "imagecreate()",
+        "session_destroy()"
+      ],
+      "correct": "A",
+      "explanation": "define() creates a constant; isset() checks whether a variable is set."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which PHP statement outputs text?",
+      "options": [
+        "return",
+        "echo",
+        "require_once",
+        "continue"
+      ],
+      "correct": "B",
+      "explanation": "echo outputs text; return sends a value back from a function."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which operator joins strings in PHP?",
+      "options": [
+        "+",
+        ">=",
+        ".",
+        "&&"
+      ],
+      "correct": "C",
+      "explanation": "PHP joins strings with the dot operator, as in \"a\" . \"b\"; + is for adding numbers."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which include statement stops execution if the file is missing?",
+      "options": [
+        "include",
+        "continue",
+        "switch",
+        "require"
+      ],
+      "correct": "D",
+      "explanation": "require stops the script with a fatal error if the file is missing; include only gives a warning and continues."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which keyword declares a function in PHP?",
+      "options": [
+        "function",
+        "class",
+        "default",
+        "require_once"
+      ],
+      "correct": "A",
+      "explanation": "The function keyword declares a function; class declares a class."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "What is a PHP array?",
+      "options": [
+        "A single named data value",
+        "An ordered key-value map",
+        "A browser rendering engine",
+        "A network routing protocol"
+      ],
+      "correct": "B",
+      "explanation": "A PHP array is an ordered map from keys to values, and the keys can be numbers or strings."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "What does $this refer to in a PHP method?",
+      "options": [
+        "The class itself",
+        "The browser history list",
+        "The current object",
+        "The database backup file"
+      ],
+      "correct": "C",
+      "explanation": "$this refers to the object the method was called on, not to the class itself."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which superglobal contains query-string data?",
+      "options": [
+        "$_POST",
+        "$_FILES",
+        "$_SESSION",
+        "$_GET"
+      ],
+      "correct": "D",
+      "explanation": "$_GET holds the query-string parameters from the URL."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Which superglobal contains submitted POST form data?",
+      "options": [
+        "$_POST",
+        "$_GET",
+        "$_SERVER",
+        "$_ENV"
+      ],
+      "correct": "A",
+      "explanation": "$_POST holds data sent with the POST method, usually from a form."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "Where must security validation of user input be enforced?",
+      "options": [
+        "Only in the browser",
+        "On the server",
+        "Inside the page stylesheet",
+        "Inside the website logo"
+      ],
+      "correct": "B",
+      "explanation": "Validation must be enforced on the server, because checks in the browser can be bypassed."
+    },
+    {
+      "type": "mc",
+      "topic": "Server-Side Controls",
+      "question": "When must header() be called relative to sending output to the browser?",
+      "options": [
+        "After the first echo",
+        "Only during CSS animations",
+        "Before any output",
+        "Only after closing the browser"
+      ],
+      "correct": "C",
+      "explanation": "header() must be called before any output, because HTTP headers are sent before the page body."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "What does a DBMS do?",
+      "options": [
+        "Runs application business logic",
+        "Controls screen brightness",
+        "Manages database data",
+        "Edits website background images"
+      ],
+      "correct": "C",
+      "explanation": "A DBMS stores, retrieves, and manages the data in a database."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "What does a row represent in a relational table?",
+      "options": [
+        "One attribute",
+        "A CSS selector",
+        "An HTTP response",
+        "One record"
+      ],
+      "correct": "D",
+      "explanation": "A row is one record; a column is one attribute."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which key uniquely identifies each row in a table?",
+      "options": [
+        "Primary key",
+        "Foreign key",
+        "Keyboard shortcut",
+        "Browser access token"
+      ],
+      "correct": "A",
+      "explanation": "A primary key uniquely identifies each row; a foreign key points to a row in another table."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "What is the role of a foreign key?",
+      "options": [
+        "Uniquely labels its own row",
+        "Links related records",
+        "Changes the browser font size",
+        "Encrypts every network packet"
+      ],
+      "correct": "B",
+      "explanation": "A foreign key links a row to a related row in another table, usually by that table's primary key."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which data type is suitable for exact monetary values?",
+      "options": [
+        "FLOAT",
+        "BOOLEAN",
+        "DECIMAL",
+        "TIMESTAMP"
+      ],
+      "correct": "C",
+      "explanation": "DECIMAL stores exact values; FLOAT is approximate and can cause rounding errors with money."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "What is the main purpose of normalization?",
+      "options": [
+        "Create a second copy of data",
+        "Change the page color scheme",
+        "Increase the network cable length",
+        "Reduce data duplication"
+      ],
+      "correct": "D",
+      "explanation": "Normalization organizes tables to reduce duplicated data and the update problems it causes."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which SQL command retrieves records?",
+      "options": [
+        "SELECT",
+        "INSERT",
+        "GRANT",
+        "CREATE TABLE"
+      ],
+      "correct": "A",
+      "explanation": "SELECT retrieves rows; INSERT adds them."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which SQL command adds a new record?",
+      "options": [
+        "UPDATE",
+        "INSERT",
+        "REVOKE",
+        "DROP TABLE"
+      ],
+      "correct": "B",
+      "explanation": "INSERT adds a new row; UPDATE changes existing rows."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which SQL clause filters individual rows?",
+      "options": [
+        "HAVING",
+        "ORDER BY",
+        "WHERE",
+        "CREATE TABLE"
+      ],
+      "correct": "C",
+      "explanation": "WHERE filters individual rows; HAVING filters groups after aggregation."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which SQL operation pairs rows from tables using a matching condition?",
+      "options": [
+        "UNION",
+        "ROLLBACK",
+        "CREATE DATABASE",
+        "JOIN"
+      ],
+      "correct": "D",
+      "explanation": "JOIN combines rows from tables where a condition matches; UNION stacks the results of two queries."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which SQL clause filters groups after aggregation?",
+      "options": [
+        "HAVING",
+        "WHERE",
+        "ORDER BY",
+        "CREATE TABLE"
+      ],
+      "correct": "A",
+      "explanation": "HAVING filters groups after GROUP BY and aggregation; WHERE filters rows before grouping."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which command undoes uncommitted transaction changes?",
+      "options": [
+        "COMMIT",
+        "ROLLBACK",
+        "CREATE TABLE",
+        "GRANT SELECT"
+      ],
+      "correct": "B",
+      "explanation": "ROLLBACK undoes changes that have not been committed; COMMIT makes them permanent."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which constraint prevents a required value from being NULL?",
+      "options": [
+        "UNIQUE",
+        "ORDER BY",
+        "NOT NULL",
+        "LEFT JOIN"
+      ],
+      "correct": "C",
+      "explanation": "NOT NULL requires a value in the column; UNIQUE forbids duplicate values but does not by itself require a value."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "Which technique most directly prevents SQL injection?",
+      "options": [
+        "Input filtering alone",
+        "Changing the website logo",
+        "Increasing the monitor resolution",
+        "Parameterized queries"
+      ],
+      "correct": "D",
+      "explanation": "Parameterized queries keep data separate from the SQL code, so input cannot change the query. Input filtering alone can be bypassed."
+    },
+    {
+      "type": "mc",
+      "topic": "Working with Databases",
+      "question": "What does least privilege mean for a database account?",
+      "options": [
+        "Only needed permissions",
+        "All administrator permissions",
+        "The longest possible username",
+        "The largest possible screen size"
+      ],
+      "correct": "A",
+      "explanation": "Least privilege gives an account only the permissions it needs, which limits the damage if it is compromised."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "What does authentication verify?",
+      "options": [
+        "User identity",
+        "User permissions",
+        "Page background color",
+        "Network cable length"
+      ],
+      "correct": "A",
+      "explanation": "Authentication verifies who the user is; permissions are checked by authorization."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Which control slows repeated password guesses?",
+      "options": [
+        "Password expiry alone",
+        "Rate limiting",
+        "Browser window resizing",
+        "Website background styling"
+      ],
+      "correct": "B",
+      "explanation": "Rate limiting slows or blocks repeated login attempts, which makes password guessing slow."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "What is username enumeration?",
+      "options": [
+        "Guessing passwords for one user",
+        "Changing the website font family",
+        "Discovering valid usernames",
+        "Compressing a database backup file"
+      ],
+      "correct": "C",
+      "explanation": "Username enumeration means finding out which usernames exist, often from different error messages or responses."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Which login error helps reduce username enumeration?",
+      "options": [
+        "Username does not exist",
+        "Website stylesheet loaded",
+        "Screen resolution changed",
+        "Invalid credentials"
+      ],
+      "correct": "D",
+      "explanation": "A generic \"Invalid credentials\" message does not reveal whether the username exists, while \"Username does not exist\" does."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Which token is suitable for password recovery?",
+      "options": [
+        "A single-use random token",
+        "A reusable sequential token",
+        "The public website page title",
+        "The current browser window width"
+      ],
+      "correct": "A",
+      "explanation": "A recovery token must be random and single-use, so it cannot be guessed or reused. A sequential token can be predicted."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "How should passwords be stored?",
+      "options": [
+        "Fast, unsalted hashes",
+        "Salted, slow hashes",
+        "Publicly visible HTML comments",
+        "Image filenames in a public folder"
+      ],
+      "correct": "B",
+      "explanation": "Passwords should be hashed with a unique salt and a slow algorithm, which makes cracking them much harder. Fast, unsalted hashes are easy to crack."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "What does fail-closed login behavior mean?",
+      "options": [
+        "Allow access on error",
+        "Change the page background color",
+        "Deny access on error",
+        "Restart the user display driver"
+      ],
+      "correct": "C",
+      "explanation": "Fail-closed means denying access when an error happens, instead of letting the user in."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Why do web applications use session tokens?",
+      "options": [
+        "To verify passwords on every request",
+        "To choose the monitor refresh rate",
+        "To change the physical keyboard layout",
+        "To remember logged-in users"
+      ],
+      "correct": "D",
+      "explanation": "A session token lets the server recognize a logged-in user on later requests without asking for the password again."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Which source should generate secure session tokens?",
+      "options": [
+        "A cryptographic random source",
+        "A timestamp-based number sequence",
+        "The public website heading text",
+        "The browser window color theme"
+      ],
+      "correct": "A",
+      "explanation": "Session tokens must come from a cryptographically secure random source so they cannot be predicted; timestamp-based values can be guessed."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Which cookie flag prevents JavaScript from reading a cookie?",
+      "options": [
+        "Secure",
+        "HttpOnly",
+        "font-family",
+        "background-color"
+      ],
+      "correct": "B",
+      "explanation": "HttpOnly stops JavaScript from reading the cookie; Secure only makes the browser send it over HTTPS."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Which action helps prevent session fixation?",
+      "options": [
+        "Keep the same token after login",
+        "Change the website background image",
+        "Regenerate the token at login",
+        "Increase the browser window height"
+      ],
+      "correct": "C",
+      "explanation": "Issuing a new session token at login makes a token an attacker planted before login useless."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "What should happen to a session on logout?",
+      "options": [
+        "Only redirect to the home page",
+        "Change the website navigation font",
+        "Save the page as a desktop image",
+        "Invalidate it on the server"
+      ],
+      "correct": "D",
+      "explanation": "Logout must invalidate the session on the server; a redirect alone leaves the old token usable."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Which control helps protect state-changing requests from CSRF?",
+      "options": [
+        "An anti-CSRF token",
+        "A session cookie alone",
+        "A larger background image",
+        "A different monitor resolution"
+      ],
+      "correct": "A",
+      "explanation": "An anti-CSRF token is a secret value the attacker's site cannot know, so forged requests are rejected. The browser sends the session cookie automatically, so the cookie alone does not help."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "What is vertical privilege escalation?",
+      "options": [
+        "A user reads another peer account",
+        "A normal user gains admin access",
+        "A browser changes its default font",
+        "A server compresses an image file"
+      ],
+      "correct": "B",
+      "explanation": "Vertical escalation means gaining a higher role, such as a normal user getting admin access. Reading a peer's account is horizontal escalation."
+    },
+    {
+      "type": "mc",
+      "topic": "Attacking Identity & Access",
+      "question": "Which check most directly prevents IDOR?",
+      "options": [
+        "Authentication without ownership checks",
+        "Changing the website background color",
+        "Object-level authorization",
+        "Increasing the browser cache capacity"
+      ],
+      "correct": "C",
+      "explanation": "IDOR is prevented by checking, for every object requested, that this user may access it. Authentication alone does not check ownership."
+    }
+  ]
+}

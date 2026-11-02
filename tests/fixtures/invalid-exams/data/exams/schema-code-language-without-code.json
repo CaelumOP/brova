@@ -1,0 +1,23 @@
+{
+  "title": "Fixture Exam",
+  "course": "SEC3302",
+  "semester": "first-2026-27",
+  "description": "",
+  "date": "2026-11-01",
+  "questions": [
+    {
+      "type": "mc",
+      "topic": "Firewalls",
+      "question": "Which chain handles incoming packets?",
+      "options": [
+        "INPUT",
+        "OUTPUT",
+        "FORWARD",
+        "PREROUTING"
+      ],
+      "correct": "A",
+      "explanation": "INPUT handles packets addressed to the host.",
+      "codeLanguage": "shell"
+    }
+  ]
+}
