@@ -222,9 +222,9 @@ The site uses one key, `brova`:
 3. **Which semester opens:**
    * If the URL hash names a semester section or course group (the breadcrumb links), only that semester is opened, it is saved as `lastSemester`, and the target is scrolled into view.
    * Otherwise `lastSemester` opens if it exists in the manifest, or else the first semester.
-   * The student may open several sections. Opening one saves it as `lastSemester`; closing one saves nothing. The `toggle` listeners are attached after the first render, so opening a section from code does not save anything by itself.
+   * The student may open several sections. Opening one saves it as `lastSemester`; closing one saves nothing. The save happens on the summary's `click` (also fired by Enter and Space), not on the `toggle` event, which also fires later for sections opened from code.
 4. Each card shows title, description, question count, and topics. If a score is stored, it shows an "N%" badge (read by screen readers as "Last score N%") with a score bar, followed by "(older version)" when hashes differ. If no score is stored, it shows "Not taken". The card links to `exam.html?id=<id>`.
-5. **Badges are rendered on `pageshow`**, which runs on the first load and again when the browser restores the page with the Back button, so a score saved on the exam page appears without a reload.
+5. **Badges are rendered after the first load, and again on `pageshow` when `event.persisted` is true** (the browser restored the page with the Back button without running its scripts), so a score saved on the exam page appears without a reload.
 6. With no exams in the manifest, shows "No exams yet."
 7. A "Clear my scores" button at the bottom calls `window.confirm("Clear all saved scores and the remembered semester?")`. On OK, it saves the empty state and re-renders the badges (every card shows "Not taken").
 8. On a load failure, shows a banner (see [Error Handling](#error-handling)).
