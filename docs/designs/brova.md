@@ -22,7 +22,7 @@ Students preparing for exams want practice material in the format of the real te
 
 ## Goals
 
-* After clicking "Check Answers," a student sees for each question whether they were right, the correct answer, and an explanation.
+* As soon as a student answers a question, they see whether they were right, the correct answer, and an explanation. "Finish and see score" then gives the total.
 * The score summary shows the total score and correct/total for each topic in the exam.
 * The home page is organized as semester > course > exam and reopens the semester the student last opened.
 * The author publishes an exam by saving one JSON file in `data/exams/` and pushing to `main`. A GitHub Action validates every exam, builds the exam list, and deploys.
@@ -58,7 +58,7 @@ No open questions remain. These were open while the design was drafted; each is 
 ### CUJ 1: Student Takes an Exam
 
 * **Given**: A student opens the site. The home page lists semesters, newest first. The semester they last opened is expanded; on a first visit, the newest semester is. Inside it, each course that has exams lists its exam cards.
-* **When**: They open an exam, answer the questions (multiple choice as radio buttons labeled A, B, C..., true/false as True and False, code snippets in a monospace block), and click "Check Answers."
+* **When**: They open an exam, answer the questions (multiple choice as radio buttons labeled A, B, C..., true/false as True and False, code snippets in a monospace block). Each answer is checked as soon as they choose it. At the end they click "Finish and see score."
 * **Then**: Each question is marked "Correct" (green, check icon), "Incorrect" (red, X icon), or "Not answered" (counted as wrong). If the student missed the correct option, it is outlined in dashed lime with "Correct answer". Every question shows its explanation. A summary at the top shows "18/25 72%" and a tile per topic with correct/total and a percent. The question map beside the questions (under them on phones) marks each question number by result, with an icon as well as a color, and links to it. Keyboard focus moves to the summary. The score is saved in the browser, and when the student returns to the home page, including with the browser's Back button, that exam's card shows "72%".
 
 ### CUJ 2: Author Adds an Exam
@@ -242,21 +242,19 @@ The site uses one key, `brova`:
    * An optional code block: a label bar showing `codeLanguage` (or "code" when it is missing) above a `<pre dir="ltr"><code>` colored by `js/syntax.js`.
    * Native radio buttons. A multiple-choice label is a letter chip ("A") followed by the option text; true/false labels are "True" and "False".
 8. **Question map**: an `<aside aria-label="Question map">` in a side column (under the questions on narrow screens) with one numbered link per question to `#q-N`.
-   * Before grading, it marks which questions have an answer and updates when a radio button changes.
-   * After grading, each square shows correct, incorrect, or not answered with an icon as well as a color, and the map shows the three counts. Each link's accessible name includes the state ("Question 2, incorrect").
-   * The map holds the main button: "Check Answers" before grading, "Retake this exam" after.
+   * Each square shows correct or incorrect, with an icon as well as a color, as soon as that question is checked. After "Finish and see score", unanswered squares show "not answered" and the map shows the three counts. Each link's accessible name includes the state ("Question 2, incorrect").
+   * The map holds the main button: "Finish and see score" before finishing, "Retake this exam" after.
 9. **Next-exam card**: in the same side column, below the map, a link to the next older exam in the same course and semester (the next one in manifest order, which is newest first), showing its title and question count. Hidden on the course's oldest exam.
 10. **Report control**: a link (`<a target="_blank" rel="noopener">`) with a flag icon and the accessible name "Report question N". In the DOM it comes after the question's answers; CSS places it in the question's top inline-end corner.
-    * Before grading, it is hidden until the question has a selected answer.
-    * After grading, it is shown on every question, including unanswered ones ("My answer: Not answered").
-    * Its `href` is rebuilt whenever the answer or the grading state changes (see [Report Templates](#report-templates)).
-11. **Check Answers**: grades through `js/grading.js`.
-    * Marks each question Correct, Incorrect, or Not answered, with icon and text.
-    * Marks the student's pick as correct or wrong, outlines a missed correct option in dashed lime with "Correct answer", shows every question's explanation, and disables the radio buttons.
-    * Renders the summary at the top: score line, overall bar, and one tile per topic with correct/total and a percent.
-    * Updates the question map, moves focus to the summary heading (`tabindex="-1"`), and saves `{ correct, total, at, hash }` through `updateState`.
-12. **Retake**: clears selections, marks, explanations, the summary, and the question map states, and hides the Report controls again until an answer is chosen. Re-enables the radio buttons, scrolls to the top, and focuses the exam `h1`. The saved score is kept. Nothing is re-fetched.
-13. **Debug mode**: with `&debug=true` in the URL, after "Check Answers" it calls `console.table` with each question's number, expected answer, given answer, and result.
+    * It is hidden until the question has a selected answer; after "Finish and see score", it is shown on every question, including unanswered ones ("My answer: Not answered").
+    * Its `href` is rebuilt whenever the answer changes or the question is checked (see [Report Templates](#report-templates)).
+11. **Instant checking** (author's decision, 2026-11-03: always on, no exam mode): each answer is checked as soon as it is chosen, through `gradeQuestion` in `js/grading.js`.
+    * The question is marked Correct or Incorrect with icon and text; the student's pick is marked correct or wrong; a missed correct option gets the dashed lime outline and "Correct answer"; the explanation appears; and the question's radio buttons are disabled, so the answer cannot be changed after seeing it.
+    * A click or tap checks at once. Arrow keys move through a radio group by selecting each option, so a selection made with an arrow key only marks the question as answered; Enter or Space then checks it. A hint under the exam header says answers are checked when chosen, with the keyboard instructions for screen readers.
+    * If focus was inside the question when it was checked, focus moves to its explanation (`tabindex="-1"`), because disabling the focused radio button would otherwise drop focus.
+12. **Finish and see score**: checks every question not checked yet (they show "Not answered" with the correct answer marked), then grades the whole exam through `gradeExam`, renders the summary at the top (score line, overall bar, one tile per topic with correct/total and a percent), shows the map's counts, moves focus to the summary heading (`tabindex="-1"`), and saves `{ correct, total, at, hash }` through `updateState`. A score is saved only when the student finishes.
+13. **Retake**: clears selections, marks, explanations, the summary, and the question map states, and hides the Report controls again until an answer is chosen. Re-enables the radio buttons, scrolls to the top, and focuses the exam `h1`. The saved score is kept. Nothing is re-fetched.
+14. **Debug mode**: with `&debug=true` in the URL, after "Finish and see score" it calls `console.table` with each question's number, expected answer, given answer, and result.
 
 ### Bilingual Names
 
@@ -286,7 +284,7 @@ The site uses one key, `brova`:
   ```
 
 * `{answer}` is `{letter}) {option text}` for multiple choice, `True` or `False` for true/false, or `Not answered`.
-* The `Marked correct:` line appears only after "Check Answers".
+* The `Marked correct:` line appears only once the question has been checked.
 
 **Error report** (from the "Report this error" link):
 
@@ -722,7 +720,7 @@ All values come from [brova-ui.md](brova-ui.md).
     * put code snippets in `code`, not in `question`, and set `codeLanguage` when the language is one of the seven listed;
     * write original questions from the lecture material, not copies of real past exams.
 
-    The file ends with the sample exam as a worked example.
+    The file ends with a short worked example (three questions, including a shell code block). It also has a section for converting an existing question bank: keep every question and answer as given, use its chapters as topics, write the explanations, and start an explanation with `Check this answer:` when the AI thinks a given key is wrong. `tests/prompt.test.js` fails if the prompt's schema differs from `data/exam-schema.json`, if a course code or semester ID from `config.json` is missing from it, or if the worked example does not validate.
 32. **`README.md`**:
     * what Brova is, its URL, and the Action status badge;
     * how to add an exam: use the prompt, save the result as `data/exams/<id>.json`, and push;

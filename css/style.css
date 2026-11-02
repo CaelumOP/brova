@@ -289,6 +289,9 @@ h1:focus, .summary h2:focus {
 .exam-course { font-weight: 600; }
 .exam-course .name-ar { font-size: 15px; }
 .exam-meta { color: var(--color-muted); }
+.exam-hint { font-size: 14px; color: var(--color-muted); }
+.explanation:focus { outline: none; }
+.explanation:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
 /* ---- Score summary ---- */
 .summary {

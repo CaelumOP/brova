@@ -1,8 +1,9 @@
-// Exam page: renders one exam, grades it, saves the score, and builds report links.
+// Exam page: renders one exam, checks each answer as soon as it is chosen, shows
+// the score summary at the end, saves the score, and builds report links.
 import {
   EXAM_ID_PATTERN, LoadError, bilingualName, el, fetchJson, icon, installErrorHandlers, questionReportUrl, showBanner, updateState,
 } from "./common.js?v=__BUILD__";
-import { gradeExam, letterToIndex } from "./grading.js?v=__BUILD__";
+import { gradeExam, gradeQuestion } from "./grading.js?v=__BUILD__";
 import { tokenize } from "./syntax.js?v=__BUILD__";
 
 installErrorHandlers();
@@ -12,8 +13,12 @@ const examId = params.get("id") ?? "";
 const debug = params.get("debug") === "true";
 
 // The one state object: the manifest entry, the exam, the answers by position
-// (option index, true/false, or null), and the grading result once graded.
-const state = { entry: null, exam: null, answers: [], result: null };
+// (option index, true/false, or null), which questions have been checked, and
+// the exam result once the student finishes.
+const state = { entry: null, exam: null, answers: [], revealed: [], result: null };
+// Arrow keys move through a radio group by selecting each option. So that this
+// does not lock in an answer, an arrow-key selection waits for Enter or Space.
+let arrowKeyMove = false;
 // DOM references, filled in by render().
 const ui = { title: null, summary: null, mainButton: null, legend: null, questions: [], mapLinks: [] };
 
@@ -50,6 +55,7 @@ async function start() {
   }
   updateState((s) => ({ ...s, lastSemester: semester.id }));
   state.answers = state.exam.questions.map(() => null);
+  state.revealed = state.exam.questions.map(() => false);
 
   try {
     render(manifest, course, semester);
@@ -90,7 +96,9 @@ function render(manifest, course, semester) {
     breadcrumb,
     ui.title,
     el("p", { class: "exam-course" }, bilingualName(course.name.en, course.name.ar)),
-    el("p", { class: "exam-meta" }, [exam.description, `${exam.questions.length} questions.`].filter(Boolean).join(" ")));
+    el("p", { class: "exam-meta" }, [exam.description, `${exam.questions.length} questions.`].filter(Boolean).join(" ")),
+    el("p", { class: "exam-hint" }, "Each answer is checked as soon as you choose it.",
+      el("span", { class: "visually-hidden" }, " With a keyboard, use the arrow keys to move between options and press Enter to check.")));
 
   ui.summary = el("section", { class: "summary", hidden: true, "aria-labelledby": "summary-heading" });
 
@@ -104,7 +112,8 @@ function render(manifest, course, semester) {
 function renderQuestion(question, index) {
   const number = index + 1;
   const status = el("span", { class: "status", hidden: true });
-  const explanation = el("div", { class: "explanation", hidden: true },
+  // tabindex -1: focus moves here when the question is checked from the keyboard.
+  const explanation = el("div", { class: "explanation", hidden: true, tabindex: "-1" },
     el("strong", { class: "why" }, "Why:"), " ", question.explanation);
   const report = el("a", {
     class: "report", target: "_blank", rel: "noopener", hidden: true,
@@ -137,11 +146,11 @@ function renderQuestion(question, index) {
       el("span", { class: "question-head" }, el("span", { class: "eyebrow" }, `Q${number} · ${question.topic}`), status),
       el("span", { class: "question-text" }, question.question)),
     code,
-    el("div", { class: `options options-${question.type}` }, rows.map((r) => r.row)),
+    el("div", { class: `options options-${question.type}`, onkeydown: (event) => optionKey(event, index) }, rows.map((r) => r.row)),
     explanation,
     report);
 
-  ui.questions[index] = { status, explanation, report, rows };
+  ui.questions[index] = { fieldset, status, explanation, report, rows };
   return fieldset;
 }
 
@@ -149,7 +158,7 @@ function renderMap() {
   ui.mapLinks = state.exam.questions.map((_, i) =>
     el("a", { href: `#q-${i + 1}`, class: "map-square", "aria-label": `Question ${i + 1}, not answered` }, String(i + 1)));
   ui.legend = el("p", { class: "map-legend", hidden: true });
-  ui.mainButton = el("button", { type: "button", class: "button-primary", onclick: () => (state.result ? retake() : grade()) }, "Check Answers");
+  ui.mainButton = el("button", { type: "button", class: "button-primary", onclick: () => (state.result ? retake() : finish()) }, "Finish and see score");
   return el("aside", { class: "map", "aria-label": "Question map" },
     el("h2", { class: "eyebrow" }, "Questions"),
     el("div", { class: "map-grid" }, ui.mapLinks),
@@ -170,18 +179,35 @@ function renderNextCard(manifest) {
 // ---- Answering and reporting ----
 
 function choose(index, value) {
+  if (state.revealed[index]) return;
   state.answers[index] = value;
-  const link = ui.mapLinks[index];
-  link.classList.add("answered");
-  link.setAttribute("aria-label", `Question ${index + 1}, answered`);
-  updateReport(index);
+  if (arrowKeyMove) {
+    // Chosen with an arrow key: wait for Enter or Space before checking.
+    arrowKeyMove = false;
+    const link = ui.mapLinks[index];
+    link.classList.add("answered");
+    link.setAttribute("aria-label", `Question ${index + 1}, answered`);
+    updateReport(index);
+    return;
+  }
+  reveal(index);
+}
+
+function optionKey(event, index) {
+  if (event.key.startsWith("Arrow")) {
+    arrowKeyMove = true;
+    setTimeout(() => (arrowKeyMove = false)); // in case the key changed nothing
+  } else if ((event.key === "Enter" || event.key === " ") && state.answers[index] !== null && !state.revealed[index]) {
+    event.preventDefault();
+    reveal(index);
+  }
 }
 
 function updateReport(index) {
   const question = state.exam.questions[index];
   const { report } = ui.questions[index];
   const answer = state.answers[index];
-  report.hidden = !state.result && answer === null;
+  report.hidden = !state.revealed[index] && answer === null;
   if (report.hidden) return;
   report.href = questionReportUrl({
     examId,
@@ -189,47 +215,59 @@ function updateReport(index) {
     number: index + 1,
     questionText: question.question,
     myAnswer: answerText(question, answer),
-    markedCorrect: state.result ? answerText(question, state.result.results[index].correctAnswer) : null,
+    markedCorrect: state.revealed[index] ? answerText(question, gradeQuestion(question, answer).correctAnswer) : null,
     pageUrl: location.href,
   });
 }
 
-// ---- Grading ----
+// ---- Checking and finishing ----
 
 const STATUS_TEXT = { correct: "Correct", incorrect: "Incorrect", unanswered: "Not answered" };
 const STATUS_ICON = { correct: "check", incorrect: "x", unanswered: "dash" };
 
-function grade() {
+// Checks one question and shows its result, correct answer, and explanation.
+function reveal(index) {
+  const question = state.exam.questions[index];
+  const { status, correctAnswer } = gradeQuestion(question, state.answers[index]);
+  const q = ui.questions[index];
+  // Disabling the focused radio button would drop keyboard focus, so move it to
+  // the explanation, which screen readers then read.
+  const hadFocus = q.fieldset.contains(document.activeElement);
+  state.revealed[index] = true;
+
+  q.status.hidden = false;
+  q.status.className = `status status-${status}`;
+  q.status.replaceChildren(icon(STATUS_ICON[status], 16), STATUS_TEXT[status]);
+  for (const row of q.rows) {
+    row.input.disabled = true;
+    if (row.value === state.answers[index]) {
+      row.row.classList.add(status === "correct" ? "picked-correct" : "picked-wrong");
+      row.end.replaceChildren("Your answer");
+    } else if (row.value === correctAnswer) {
+      row.row.classList.add("missed");
+      row.end.replaceChildren(icon("arrow-right", 16), "Correct answer");
+    }
+  }
+  q.explanation.hidden = false;
+  updateReport(index);
+
+  const link = ui.mapLinks[index];
+  link.classList.remove("answered");
+  link.classList.add(`map-${status}`);
+  link.replaceChildren(String(index + 1), icon(STATUS_ICON[status], 10));
+  link.setAttribute("aria-label", `Question ${index + 1}, ${STATUS_TEXT[status].toLowerCase()}`);
+
+  if (hadFocus) q.explanation.focus({ preventScroll: true });
+}
+
+function finish() {
   const { exam } = state;
+  // Questions not checked yet (unanswered, or chosen by arrow key) are checked now.
+  exam.questions.forEach((_, i) => {
+    if (!state.revealed[i]) reveal(i);
+  });
   state.result = gradeExam(exam.questions, state.answers);
   const { result } = state;
-
-  exam.questions.forEach((question, i) => {
-    const { status, correctAnswer } = result.results[i];
-    const q = ui.questions[i];
-    q.status.hidden = false;
-    q.status.className = `status status-${status}`;
-    q.status.replaceChildren(icon(STATUS_ICON[status], 16), STATUS_TEXT[status]);
-    for (const row of q.rows) {
-      row.input.disabled = true;
-      const picked = row.value === state.answers[i];
-      if (picked) {
-        row.row.classList.add(status === "correct" ? "picked-correct" : "picked-wrong");
-        row.end.replaceChildren("Your answer");
-      } else if (row.value === correctAnswer) {
-        row.row.classList.add("missed");
-        row.end.replaceChildren(icon("arrow-right", 16), "Correct answer");
-      }
-    }
-    q.explanation.hidden = false;
-    updateReport(i);
-
-    const link = ui.mapLinks[i];
-    link.classList.remove("answered");
-    link.classList.add(`map-${status}`);
-    link.replaceChildren(String(i + 1), icon(STATUS_ICON[status], 10));
-    link.setAttribute("aria-label", `Question ${i + 1}, ${STATUS_TEXT[status].toLowerCase()}`);
-  });
 
   renderSummary(result);
   ui.legend.hidden = false;
@@ -277,6 +315,7 @@ function renderSummary(result) {
 function retake() {
   state.result = null;
   state.answers = state.exam.questions.map(() => null);
+  state.revealed = state.exam.questions.map(() => false);
   ui.questions.forEach((q, i) => {
     q.status.hidden = true;
     q.status.replaceChildren();
@@ -296,7 +335,7 @@ function retake() {
   ui.summary.hidden = true;
   ui.summary.replaceChildren();
   ui.legend.hidden = true;
-  ui.mainButton.replaceChildren("Check Answers");
+  ui.mainButton.replaceChildren("Finish and see score");
   window.scrollTo(0, 0);
   ui.title.focus({ preventScroll: true });
 }

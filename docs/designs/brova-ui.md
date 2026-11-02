@@ -211,7 +211,7 @@ Fallbacks: `system-ui, sans-serif` for the sans families and `ui-monospace, mono
 
 ### Score summary and topic tiles
 
-* A panel (`--color-surface`, 1px border, radius 12px, padding 24px, 22px gap) shown after "Check Answers."
+* A panel (`--color-surface`, 1px border, radius 12px, padding 24px, 22px gap) shown after "Finish and see score."
 * Heading "Your score" (h2, eyebrow style, `tabindex="-1"`; focus moves here after grading).
 * Score line: "18/25" big score and "72%" beside it.
 * An 8px overall bar (`--color-accent` fill on `--color-track`), `role="img"` with `aria-label="72 percent correct"`.
@@ -269,7 +269,7 @@ Before grading (not in the mockups): a selected row gets a 1px `--color-accent-s
   * Before grading (not in the mockups): answered squares get a 1px `--color-accent-strong` border and accent number; unanswered squares look like "Not answered" without the icon.
   * Each link's accessible name says the state: "Question 2, incorrect", "Question 3, not answered", or before grading "Question 4, answered".
 * A legend row (13px muted): a 12px swatch per state with its count, "Correct 18 · Incorrect 5 · Not answered 2" (after grading only).
-* The primary button at the bottom: "Check Answers" before grading, "Retake this exam" after.
+* The primary button at the bottom: "Finish and see score" before finishing, "Retake this exam" after. (Each question is checked as soon as it is answered; see [brova.md](brova.md#examhtml-exam).)
 
 ### Next-exam card
 
