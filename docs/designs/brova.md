@@ -620,7 +620,7 @@ Repository `CaelumOP/brova`; live site `https://caelumop.github.io/brova/`. Tool
       * attributes are set with `setAttribute`;
       * a key starting with `on` must have a function value, which becomes an event listener; any other value throws;
       * `true` sets an empty attribute; `null`, `undefined`, and `false` are skipped;
-      * string and number children become text nodes; `null`, `undefined`, and `false` children are skipped.
+      * string and number children become text nodes; `null`, `undefined`, and `false` children are skipped; arrays of children are flattened.
     * `fetchJson(url)`:
       * fetches with `cache: "no-cache"`;
       * a network failure throws a `LoadError` with `{ kind: "network", url }`;
@@ -631,7 +631,7 @@ Repository `CaelumOP/brova`; live site `https://caelumop.github.io/brova/`. Tool
       * any exception yields the empty state or skips the save.
     * `questionReportUrl({ examId, hash, number, questionText, myAnswer, markedCorrect, pageUrl })` and `errorReportUrl({ message, source, line, column, stack, pageUrl, userAgent })` build the URLs per [Report Templates](#report-templates), including the caps. `myAnswer` and `markedCorrect` are the finished text (`B) option text`, `True`, or `Not answered`).
     * `bilingualName(en, ar)` returns a `span` containing the English text, " · ", and `<span lang="ar" dir="rtl" class="name-ar">`.
-    * `showBanner(message, { url, reportError })` renders into `#banner`.
+    * `showBanner(message, { url, reportError, kind })` renders into `#banner`; `kind` is `"error"` (the default, `role="alert"`) or `"notice"` (`role="status"`), matching the two banner styles in [brova-ui.md](brova-ui.md).
     * `installErrorHandlers()` sets `window.onerror` and `unhandledrejection` to show a banner with a "Report this error" link, only for errors whose source file is under the site's own path (or rejections from site code).
 18a. **`js/syntax.js`** (first version): exports `tokenize(code, language)`, which for now returns one `plain` token holding the whole code, so Phase 4 can render code blocks. Phase 5 (item 29) adds the coloring rules.
 19. **`tests/grading.test.js`** covers:
