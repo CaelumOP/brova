@@ -507,7 +507,7 @@ Repository `CaelumOP/brova`; live site `https://caelumop.github.io/brova/`. Tool
      * "E" with four options passes the schema, as intended. The `correct-out-of-range` rule catches it.
    * **Not yet checked with ajv** (added after that check; Phase 1's fixtures confirm each one fails): an unknown `type`, an unknown `codeLanguage`, a `codeLanguage` without `code`, and a whitespace-only `topic`.
 7. **`data/config.json`**: the semester and five courses in [Configuration](#configuration).
-8. **`data/exams/sec3302-practice-first-2026-27.json`**, which exercises every rendering path (mc, tf, code blocks, and 5 to 6 options):
+8. **`data/exams/sec3302-practice-first-2026-27.json`**, which exercises every rendering path (mc, tf, code blocks, and 5 to 6 options). *Removed from the site at the author's request on 2026-11-03, after Phase 5; the live site now has only the SEC3205 midterm. Where the checks below say "the sample exam", use an exam with true/false questions and code blocks, or the test fixtures.*
    * an original practice exam that an AI writes from SEC3302 lecture material, not copied from any real exam;
    * title `Network Security — Practice Exam 1`, `date` set to the day it is written;
    * at least 8 questions, including both types, at least 3 topics, at least one question with `code` and `codeLanguage: "shell"`, one with `code` and no `codeLanguage`, and at least one mc question with 5 or 6 options;
